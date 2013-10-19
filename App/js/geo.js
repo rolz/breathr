@@ -1,15 +1,15 @@
 $(document).ready(function() {
 
     var originPosition = null;
-          
+    
     // get origin location    
         
     function get_location() {
          
         if (geoPosition.init()) {
+        // 2nd callback    
           geoPosition.getCurrentPosition(geoLoc, geoError);
-        }  
-            
+        }      
      }; 
     
     function geoLoc(p) {
@@ -19,26 +19,24 @@ $(document).ready(function() {
         
         // make sure its arguments and not a string
         originPosition = new google.maps.LatLng(originLat, originLng);
-        
+        // need to be logged 1st
         console.log("My location is latitude " + originLat +" and longitude " + originLng);
         $("#lat").html(originLat);
         $("#lng").html(originLng);
      
-    //2nd callback    
+    //3rd callback    
         getDestinationsData();
     };
             
         
     function geoError() {
           console.log("Could not find you!");
-        }   
+        };   
   
     // 1st start call function      
     get_location();
-        
-        
+                  
     // get location of database of destinations   | test1 data 
-    
     function getDestinationsData(table) {
         
          var fusionUrl = "https://www.googleapis.com/fusiontables/v1/";
@@ -51,34 +49,22 @@ $(document).ready(function() {
         // 3rd callback
          $.getJSON(url, getDestinations);
     };
-        
-
     
-            
-    function getDestinations(l) {
+     function getDestinations(destinationCoordsData) {
                
-            for (i=0;i<l.rows.length;i++){
-                var raw = l.rows[i];
-                //getting google maps json
-                var destinationArray = new google.maps.LatLng(raw[3],raw[4]);
-                
-                // 4th and last callback to get distance function  
-                getDistance(destinationArray);
-                
-                //console array
-                //console.log(destinationArray);
-                
-            }
+            for (i=0;i<destinationCoordsData.rows.length;i++){
+                var raw = destinationCoordsData.rows[i];
+                //getting google maps json, this has lat and lng
+                var destinationObjects = new google.maps.LatLng(raw[3],raw[4]);
 
+                // 4th callback to get distance function  
+                getDistance(destinationObjects);
+            }
     };
         
-    
-    
-    var timeValueArray = new Array();
-    
-    function getDistance(destinationCoordsArray) {
-          
-        //get distances    
+    var destinationsValuesArray = []; 
+   
+    function getDistance(destinationCoordsArray) {      
             var service = new google.maps.DistanceMatrixService();
             service.getDistanceMatrix(  
               {
@@ -105,49 +91,35 @@ $(document).ready(function() {
                         var from = origins[i];
                         var to = destinations[j];
                           
-                        // add needed element to an array  
-                        var proximityData = [distance,duration,timeValue];    
-                        timeValueArray.push(proximityData);  
-                      }
+                        // add needed element to an array 
+                        var proximityData = {distance: distance, 
+                                             duration: duration, 
+                                             timeValue: timeValue, 
+                                             from: from,
+                                             to: to};    
+                           destinationsValuesArray.push(proximityData);   
+                        }
                     }
-                  }    
+                }
             }
-         
-    };
+    }; 
     
-    
-    // get proximity data out of for loop and make an array
-    var proximityArray = timeValueArray;
+    var proximityArray = destinationsValuesArray;    
     storeProximityArray(proximityArray);
+    return proximityArray.length;
     
-    
-
-//get time values from duration values and store in an array?
+//get time values from duration values and store in an array
     function storeProximityArray(allProximityValues) {
         var proximityArray = [allProximityValues];
+        // first time location allow, you need to reload page for array to work.
         console.log(proximityArray); 
-            
-//        // use this to find smallest number
-//            var index = 0;
-//            var value = temp[0];
-//            for (var i = 1; i < temp.length; i++) {
-//              if (temp[i] < value) {
-//                value = temp[i];
-//                index = i;
-//              }
-//}
-};
-
+     };
     
-
-
-    
-    
+        
     function findRandomDestination() {
        // math.random of all destinations        
     };
  
-
 
 // my key: AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM
 // test table id: 1uljVsKPiMm45Sjs41B6KHlXmvoa8STcU8p-dCLE 
@@ -174,5 +146,6 @@ $(document).ready(function() {
 
 
 });
+
 
 
