@@ -1,57 +1,80 @@
-$(document).ready(function() {
-    
+/*global $, jQuery*/
+/*jslint browser: true, closure: true, sloppy: true, vars: true, white: true */
+
+// not using goc ready: $(document).ready(function () {
+
     var originPosition = null;
-    var destinationsContainerArray = []; 
+    var _destinationSet = [];
     
-    // get origin location    
-        
-    function get_location() {
-         
-        if (geoPosition.init()) {
-        // 2nd callback    
-          geoPosition.getCurrentPosition(geoLoc, geoError);
-        }      
-     }; 
     
-    function geoLoc(p) {
+    function getDistances (destinationCoordsArray) {  
         
-        originLat = p.coords.latitude;
-        originLng = p.coords.longitude;
-        
-        // make sure its arguments and not a string
-        originPosition = new google.maps.LatLng(originLat, originLng);
-        // need to be logged 1st
-        console.log("My location is latitude " + originLat +" and longitude " + originLng);
-        $("#lat").html(originLat);
-        $("#lng").html(originLng);
-     
-    //3rd callback    
-        getDestinationsData();
-    };
+        var service = new google.maps.DistanceMatrixService();
+                service.getDistanceMatrix(  
+                  {
+                    origins: [originPosition],
+                    destinations: [destinationCoordsArray],
+                    travelMode: google.maps.TravelMode.WALKING,
+                    unitSystem: google.maps.UnitSystem.METRIC
+                  }, callback);
             
+                function callback(response, status) {
+                    if (status == google.maps.DistanceMatrixStatus.OK) {
+                        var origins = response.originAddresses;
+                        var destinations = response.destinationAddresses;
+                        
+                        for (var i = 0; i < origins.length; i++) {
+                          var results = response.rows[i].elements;
+                          for (var j = 0; j < results.length; j++) {           
+                            var element = results[j];
+                            var distance = element.distance.text;
+                            var duration = element.duration.text; 
+                            //get time value   
+                            var timeValue = element.duration.value;         
+                            var from = origins[i];
+                            var to = destinations[j];
+                              
+                            // add needed elements to an object 
+                            var proximityData = {distance: distance, 
+                                                 duration: duration, 
+                                                 timeValue: timeValue, 
+                                                 from: from,
+                                                 to: to}; 
+                              
+                              //destinationsValuesArray.push(proximityData); 
+                              _destinationSet.push(proximityData);
+                            }
+                        }
+                    }
+                }
+    }
+
+    //get time values from duration values and store in an array, find min value
+    function storeProximityArray(destinationSet) {
+        // first time location allow, you need to reload page for array to work. And doesnt always show array of objects
+        console.log(destinationSet.data); 
         
-    function geoError() {
-          console.log("Could not find you!");
-        };   
-  
-    // 1st start call function      
-    get_location();
-                  
-    // get location of database of destinations   | test1 data 
-    function getDestinationsData(table) {
+        var lowest = Number.POSITIVE_INFINITY;
+        var highest = Number.NEGATIVE_INFINITY;
+        var tmp;
         
-         var fusionUrl = "https://www.googleapis.com/fusiontables/v1/";
-         var allDataQuery = "query?sql=SELECT%20*%20FROM%20";
-         var fusionTableId = "1uljVsKPiMm45Sjs41B6KHlXmvoa8STcU8p-dCLE";
-         var fusionKey = "&key=AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM";
-         
-         var url = fusionUrl+allDataQuery+fusionTableId+fusionKey;
+        for (var i=destinationSet.data.length-1; i>=0; i--) {
+            tmp = destinationSet.data[i].timeValue;
+            if (tmp < lowest) lowest = tmp;
+            if (tmp > highest) highest = tmp;
+        }
+        console.log(highest, lowest);
+        $("#closest").html("The closest place is " + lowest + " meters away!");
         
-        // 3rd callback
-         $.getJSON(url, getDestinations);
-    };
+     }
     
-     function getDestinations(destinationCoordsData) {
+        
+    function findRandomDestination() {
+       // math.random of all destinations        
+    }
+
+    
+    function getDestinations(destinationCoordsData) {
                
             for (i=0;i<destinationCoordsData.rows.length;i++){
                 var raw = destinationCoordsData.rows[i];
@@ -59,70 +82,65 @@ $(document).ready(function() {
                 var destinationObjects = new google.maps.LatLng(raw[3],raw[4]);
                 
                 // this is coords data of destinations
-
                 // 4th callback to get distance function  
-                getDistance(destinationObjects);
+                getDistances(destinationObjects);
             }
-    };
+    } 
+
+    
+    function getDestinationsData() {
+            
+             var fusionUrl = "https://www.googleapis.com/fusiontables/v1/";
+             var allDataQuery = "query?sql=SELECT%20*%20FROM%20";
+             var fusionTableId = "1uljVsKPiMm45Sjs41B6KHlXmvoa8STcU8p-dCLE";
+             var fusionKey = "&key=AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM";
+             
+             var url = fusionUrl + allDataQuery + fusionTableId + fusionKey;
+            
+            // 3rd callback
+             $.getJSON(url, getDestinations);
+    }
+
+
+    // get origin location   
+    function geoLoc(p) {    
+        var originLat = p.coords.latitude;
+        var originLng = p.coords.longitude;
         
-    
-    function getDistance(destinationCoordsArray) {      
-            var service = new google.maps.DistanceMatrixService();
-            service.getDistanceMatrix(  
-              {
-                origins: [originPosition],
-                destinations: [destinationCoordsArray],
-                travelMode: google.maps.TravelMode.WALKING,
-                unitSystem: google.maps.UnitSystem.METRIC,
-              }, callback);
-    }; 
-    
-    function callback(response, status) {
-                if (status == google.maps.DistanceMatrixStatus.OK) {
-                    var origins = response.originAddresses;
-                    var destinations = response.destinationAddresses;
-                    
-                    for (var i = 0; i < origins.length; i++) {
-                      var results = response.rows[i].elements;
-                      for (var j = 0; j < results.length; j++) {           
-                        var element = results[j];
-                        var distance = element.distance.text;
-                        var duration = element.duration.text; 
-                        //get time value   
-                        var timeValue = element.duration.value;         
-                        var from = origins[i];
-                        var to = destinations[j];
-                          
-                        // add needed elements to an object 
-                        var proximityData = {distance: distance, 
-                                             duration: duration, 
-                                             timeValue: timeValue, 
-                                             from: from,
-                                             to: to}; 
-                          
-                          //destinationsValuesArray.push(proximityData); 
-                          destinationsContainerArray.push(proximityData);
-                        }
-                    }
-                }
-    };
-    var proximityArray = destinationsContainerArray; 
-        storeProximityArray(proximityArray);
-      
-      
-    
-//get time values from duration values and store in an array
-    function storeProximityArray(allProximityValues) {
-        var destinationsContainerArray = [allProximityValues];
-        // first time location allow, you need to reload page for array to work.
-        console.log(destinationsContainerArray); 
-     };
-    
+        // make sure its arguments and not a string
+        originPosition = new google.maps.LatLng(originLat, originLng);
+        // need to be logged 1st
+        console.log("My location is latitude " + originLat + " and longitude " + originLng);
+        $("#lat").html(originLat);
+        $("#lng").html(originLng);
+     
+    //3rd callback    
+        getDestinationsData();
+    }           
         
-    function findRandomDestination() {
-       // math.random of all destinations        
-    };
+    function geoError() {
+          console.log("Could not find you!");
+        } 
+         
+    function get_location() {
+         
+        if (geoPosition.init()) {
+        // 2nd callback    
+          geoPosition.getCurrentPosition(geoLoc, geoError);
+        }      
+     } 
  
+    // 1st start call function      
+    get_location();
+                  
+
+
+    // click event to get closest
+    $('#get-destinations').click(_destinationSet,storeProximityArray);
+
+
+//});
+
 
 // my key: AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM
 // test table id: 1uljVsKPiMm45Sjs41B6KHlXmvoa8STcU8p-dCLE 
@@ -146,9 +164,6 @@ $(document).ready(function() {
 // example directions api
 // http://maps.google.com/maps/api/directions/json?origin=27.111,45.222&destination=28.333,46.444&sensor=false    
 
-
-
-});
 
 
 
