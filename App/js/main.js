@@ -1,6 +1,7 @@
 $(document).ready(function() {
-
+    
     var originPosition = null;
+    var destinationsContainerArray = []; 
     
     // get origin location    
         
@@ -56,14 +57,15 @@ $(document).ready(function() {
                 var raw = destinationCoordsData.rows[i];
                 //getting google maps json, this has lat and lng
                 var destinationObjects = new google.maps.LatLng(raw[3],raw[4]);
+                
+                // this is coords data of destinations
 
                 // 4th callback to get distance function  
                 getDistance(destinationObjects);
             }
     };
         
-    var destinationsValuesArray = []; 
-   
+    
     function getDistance(destinationCoordsArray) {      
             var service = new google.maps.DistanceMatrixService();
             service.getDistanceMatrix(  
@@ -73,9 +75,9 @@ $(document).ready(function() {
                 travelMode: google.maps.TravelMode.WALKING,
                 unitSystem: google.maps.UnitSystem.METRIC,
               }, callback);
-                
-        
-            function callback(response, status) {
+    }; 
+    
+    function callback(response, status) {
                 if (status == google.maps.DistanceMatrixStatus.OK) {
                     var origins = response.originAddresses;
                     var destinations = response.destinationAddresses;
@@ -91,28 +93,29 @@ $(document).ready(function() {
                         var from = origins[i];
                         var to = destinations[j];
                           
-                        // add needed element to an array 
+                        // add needed elements to an object 
                         var proximityData = {distance: distance, 
                                              duration: duration, 
                                              timeValue: timeValue, 
                                              from: from,
-                                             to: to};    
-                           destinationsValuesArray.push(proximityData);   
+                                             to: to}; 
+                          
+                          //destinationsValuesArray.push(proximityData); 
+                          destinationsContainerArray.push(proximityData);
                         }
                     }
                 }
-            }
-    }; 
-    
-    var proximityArray = destinationsValuesArray;    
-    storeProximityArray(proximityArray);
-    return proximityArray.length;
+    };
+    var proximityArray = destinationsContainerArray; 
+        storeProximityArray(proximityArray);
+      
+      
     
 //get time values from duration values and store in an array
     function storeProximityArray(allProximityValues) {
-        var proximityArray = [allProximityValues];
+        var destinationsContainerArray = [allProximityValues];
         // first time location allow, you need to reload page for array to work.
-        console.log(proximityArray); 
+        console.log(destinationsContainerArray); 
      };
     
         
