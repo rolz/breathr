@@ -2,7 +2,7 @@
 /*jslint browser: true, closure: true, sloppy: true, vars: true, white: true */
 
 // not using doc ready: $(document).ready(function () {
-    $('#back').hide();
+
     var originPosition = null;
     var _destinationSet = [];
     
@@ -76,7 +76,6 @@
             $("#title").html("Closest");
             $("#user-location").html("You are currently at " + closestDestination.from +  "!");
         
-
             $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
             
             $("#get-closest").hide();
@@ -98,7 +97,6 @@
             $("#title").html("Random");    
             $("#user-location").html("You are currently at " + randomDestination.from +  "!");
         
-            $("#random").show();
             $("#random").html("But maybe you want an adventure, so go explore " + randomDestination.to + " it will only take you" + randomDestination.duration + "!");
         
             $("#get-closest").hide();
@@ -172,6 +170,7 @@
 
     // click to get random
     $('#get-random').click(_destinationSet,findRandomDestination);
+
 
 
 // my key: AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM
