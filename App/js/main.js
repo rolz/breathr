@@ -2,12 +2,12 @@
 /*jslint browser: true, closure: true, sloppy: true, vars: true, white: true */
 
 // not using doc ready: $(document).ready(function () {
-
+    $('#back').hide();
     var originPosition = null;
     var _destinationSet = [];
     
 //? how do i get the destinations coords array out and match up with the right the proximity data in a object    
-    function getDistances (destinationCoordsArray) {  
+    function getDistances (destinationCoordsArray, destinationImage) {  
         
         var service = new google.maps.DistanceMatrixService();
                 service.getDistanceMatrix(  
@@ -41,7 +41,8 @@
                                                  from: from,
                                                  to: to,
                                                  originCoords: originPosition,
-                                                 destinationCoords: destinationCoordsArray}; 
+                                                 destinationCoords: destinationCoordsArray,
+                                                 destinationImage: destinationImage}; 
                               
                               //destinationsValuesArray.push(proximityData); 
                               _destinationSet.push(proximityData);
@@ -52,7 +53,7 @@
     }
 
 //get time values from duration values and store in an array, find min value
-    function storeProximityArray(destinationSet) {
+    function getClosest(destinationSet) {
         
     //full destination data set
             console.log(destinationSet.data); 
@@ -70,11 +71,17 @@
             var closestDestination = destinationSet.data[index];
             //closest destination data set 
             console.log(closestDestination);
-            
-            $("#user-location").html("You are current at " + closestDestination.from +  "!");
-            $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
-
         
+//code for going to closest view             
+            $("#title").html("Closest");
+            $("#user-location").html("You are currently at " + closestDestination.from +  "!");
+        
+
+            $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
+            
+            $("#get-closest").hide();
+            $("#get-random").hide();
+            $("#back").show();
      }
 
 
@@ -86,10 +93,17 @@
         
         //random destination data set
             console.log(randomDestination);
-            
-            $("#user-location").html("You are current at " + randomDestination.from +  "!");
-            $("#random").html("But maybe you want an adventure, so go explore " + randomDestination.to + " it will only take you " + randomDestination.duration + "!");
         
+//code for going to random view        
+            $("#title").html("Random");    
+            $("#user-location").html("You are currently at " + randomDestination.from +  "!");
+        
+            $("#random").show();
+            $("#random").html("But maybe you want an adventure, so go explore " + randomDestination.to + " it will only take you" + randomDestination.duration + "!");
+        
+            $("#get-closest").hide();
+            $("#get-random").hide();
+            $("#back").show();
     }
 
 // get destinations data    
@@ -98,11 +112,12 @@
             for (i=0;i<destinationCoordsData.rows.length;i++){
                 var raw = destinationCoordsData.rows[i];
                 //getting google maps json, this has lat and lng
-                var destinationObjects = new google.maps.LatLng(raw[3],raw[4]);
+                var destinationMedia = raw[1];
+                var destinationCoords = new google.maps.LatLng(raw[3],raw[4]);
                 
                 // this is coords data of destinations
                 // 4th callback to get distance function  
-                getDistances(destinationObjects);
+                getDistances(destinationCoords,destinationMedia);
             }
     } 
 
@@ -118,6 +133,7 @@
             
             // 3rd callback
              $.getJSON(url, getDestinationsCoords);
+        console.log(url);
     }
 
 
@@ -131,7 +147,7 @@
             
         // check we get coords, needs to be logged 1st
             console.log("My location is latitude " + originLat + " and longitude " + originLng);
-         
+                 
         //3rd callback    
             getDestinationsData();
     }           
@@ -141,25 +157,21 @@
         } 
          
     function get_location() {
-         
+    
             if (geoPosition.init()) {
             // 2nd callback    
             geoPosition.getCurrentPosition(geoLoc, geoError);
         }      
      } 
- 
+   
     // 1st start call function      
     get_location();
-                  
 
     // click to get closest
-    $('#get-closest').click(_destinationSet,storeProximityArray);
+    $('#get-closest').click(_destinationSet,getClosest);
 
     // click to get random
     $('#get-random').click(_destinationSet,findRandomDestination);
-
-
-//});
 
 
 // my key: AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM
