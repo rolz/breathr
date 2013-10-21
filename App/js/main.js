@@ -99,7 +99,7 @@
             $("#title").html("Random");    
             $("#user-location").html("You are currently at " + randomDestination.from +  "!");
         
-            $("#random").html("But maybe you want an adventure, so go explore " + randomDestination.to + " it will only take you" + randomDestination.duration + "!");
+            $("#random").html("But maybe you want an adventure, so go explore " + randomDestination.to + " it will only take you " + randomDestination.duration + "!");
         
             getBg(randomDestination.destinationImage)
 
@@ -114,7 +114,7 @@
         var imgUrlHttp = imgUrlHttps.replace("https","http");
         console.log(imgUrlHttp);       
         var imgUrl = 'url('+imgUrlHttp+')';
-        $('#img-container').css("background-image", imgUrl);
+        $('#img-container').css("background", "url(http://pbs.twimg.com/media/BWHwn9qIUAAOu90.jpg)");
         
     }
     
@@ -180,7 +180,45 @@
     // 1st start call function      
     get_location();
 
-    //show and hide buttons
+//get weather data 
+    function getWeatherData (api) {
+
+//http://api.worldweatheronline.com/free/v1/weather.ashx?q=stockholm&format=json&num_of_days=1&callback=?&key=86pdf5p7sa34xzrgbenmtjnb
+
+        var key = "86pdf5p7sa34xzrgbenmtjnb";
+        var url = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=";
+        var city = "Stockholm";
+        var numDays = 1;
+        var amazingCallback = "?"
+    //	var coords = "";
+        var format = "json";
+
+
+
+
+	   var fullQueryUrl = url+city+"&format="+format+"&num_of_days="+numDays+"&callback="+amazingCallback+"&key="+key;
+
+	//console.log(fullQueryUrl);
+
+	   $.getJSON(fullQueryUrl, getTemperatureInfo);
+};
+
+
+
+function getTemperatureInfo (weatherData) {
+		var currentTemperature = weatherData.data.current_condition[0].temp_C;
+		var city = weatherData.data.request[0].query;
+		var celsius = String.fromCharCode(176)+"C";
+        var weatherDesc = weatherData.data.current_condition[0].weatherDesc[0].value;
+		console.log("the temperature in "+city+" is "+currentTemperature+celsius);
+        $('#weather').html("It is " + weatherDesc + " and the temperature in " + city + " is " +currentTemperature+celsius);
+};
+
+//  weather data callback
+    getWeatherData();
+
+
+//show and hide buttons
     function buttonsControl() {
         $('#get-closest').hide();
         $('#get-random').hide();
@@ -196,6 +234,9 @@
     $('#more-random').click(_destinationSet,findRandomDestination);
 
 
+    $("#back").click(function() {
+        window.location.reload()
+    });
 
 // my key: AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM
 // test table id: 1uljVsKPiMm45Sjs41B6KHlXmvoa8STcU8p-dCLE 

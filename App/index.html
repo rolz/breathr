@@ -15,16 +15,24 @@
     
 <body>
     <div id="img-container">
-      <div class="container">
-           <div class="row"> 
+      
+            <div class="header" id="weather-header">
+                <div class="row">
+                    <div id="weather" class="col-xs-2 col-sm-2 col-md-2"></div>
+                    <div class="col-xs-10 col-sm-10 col-md-10"></div>
+                </div>
+            </div>
+        
+            <div class="container">
+            <div class="row"> 
                 <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
-                    <button type="button" id="back" class="btn btn-default" style="display:none" onClick="window.location.reload()">Back</button>
+                    <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
                 </div>
                 <div id="jumbotron" class="col-xs-10 col-sm-8 col-md-6">
                     <h2><div id="title">Find a View!</div></h2>
                 </div> 
                <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
-                   <button type="button" id="back" class="btn btn-default" style="display:none">More</button>
+                   <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
                </div>
             </div>  
           
@@ -55,6 +63,8 @@
             </div>
           
         </div>
+        
+        
     </div>  
    
     
