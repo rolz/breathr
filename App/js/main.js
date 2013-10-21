@@ -80,17 +80,9 @@
         
             $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
        
-            //get images
-            var imgUrlHttps = closestDestination.destinationImage;
-            var imgUrlHttp = imgUrlHttps.replace("https","http");
-            console.log(imgUrlHttp);       
-            var imgUrl = 'url('+imgUrlHttp+')';
-            $('#img-container').css("background-image", imgUrl);
-        
-            //show and hide buttons            
-            $("#get-closest").hide();
-            $("#get-random").hide(); 
-            $("#back").show();
+            getBg(closestDestination.destinationImage)
+    
+            buttonsControl();
      }
 
 
@@ -108,20 +100,23 @@
             $("#user-location").html("You are currently at " + randomDestination.from +  "!");
         
             $("#random").html("But maybe you want an adventure, so go explore " + randomDestination.to + " it will only take you" + randomDestination.duration + "!");
+        
+            getBg(randomDestination.destinationImage)
 
-            //get images        
-            var imgUrlHttps = randomDestination.destinationImage;
-            var imgUrlHttp = imgUrlHttps.replace("https","http");
-            console.log(imgUrlHttp);       
-            var imgUrl = 'url('+imgUrlHttp+')';
-            $('#img-container').css("background-image", imgUrl);
-
-            //show and hide buttons        
-            $("#get-closest").hide();
-            $("#get-random").hide();
-            $("#back").show();
+            buttonsControl();
     }
 
+ //get destination backgrounds images
+    function getBg(imgDestination) {
+        
+        var imgUrlHttps = imgDestination;
+        var imgUrlHttp = imgUrlHttps.replace("https","http");
+        console.log(imgUrlHttp);       
+        var imgUrl = 'url('+imgUrlHttp+')';
+        $('#img-container').css("background-image", imgUrl);
+        
+    }
+    
 
 // get destinations data    
     function getDestinationsCoords(destinationCoordsData) {
@@ -183,6 +178,14 @@
    
     // 1st start call function      
     get_location();
+
+    //show and hide buttons
+    function buttonsControl() {
+        $("#get-closest").hide();
+        $("#get-random").hide();
+        $("#back").show();
+    }
+
 
     // click to get closest
     $('#get-closest').click(_destinationSet,getClosest);
