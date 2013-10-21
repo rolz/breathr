@@ -1,16 +1,5 @@
-.img-container {
-  display: block;
-  position: absolute;     
-  width: 100%;
-  background-image:url('../img/sthlm_water_bg.jpg');
-  margin: 0 auto;
-  height:100%;
-  /*background-size: 100%;*/      
-}
-
-.row {
-  text-align:center;
-  margin-bottom:30px;
+.p {
+  color:black;
 }
 
 .container {
@@ -18,9 +7,9 @@
   margin-top:14%;
   text-align:center;
 }
-
-.p {
-  color:white;
+.row {
+  text-align:center;
+  margin-bottom:30px;
 }
 
 #jumbotron {
@@ -30,4 +19,15 @@
   font-size: 6.000em;
   line-height: 1;
   color:black;
+}
+
+#img-container {
+  display: block;
+  position: absolute;     
+  width: 100%;
+  background-image:url('../img/sthlm_water_bg.jpg');
+  /*background-image:url('http://pbs.twimg.com/media/BWJgBZdIgAA1Qd2.jpg');*/    
+  margin: 0 auto;
+  height:100%;
+  background-size: 100%;    
 }

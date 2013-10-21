@@ -52,10 +52,10 @@
                 }
     }
 
-//get time values from duration values and store in an array, find min value
+//Find closest destination
     function getClosest(destinationSet) {
         
-    //full destination data set
+            //full destination data set
             console.log(destinationSet.data); 
                
             var index = 0;
@@ -71,15 +71,25 @@
             var closestDestination = destinationSet.data[index];
             //closest destination data set 
             console.log(closestDestination);
+            console.log(closestDestination.destinationImage);
         
-//code for going to closest view             
+        
+            //code for going to closest view in html             
             $("#title").html("Closest");
             $("#user-location").html("You are currently at " + closestDestination.from +  "!");
         
             $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
-            
+       
+            //get images
+            var imgUrlHttps = closestDestination.destinationImage;
+            var imgUrlHttp = imgUrlHttps.replace("https","http");
+            console.log(imgUrlHttp);       
+            var imgUrl = 'url('+imgUrlHttp+')';
+            $('#img-container').css("background-image", imgUrl);
+        
+            //show and hide buttons            
             $("#get-closest").hide();
-            $("#get-random").hide();
+            $("#get-random").hide(); 
             $("#back").show();
      }
 
@@ -87,22 +97,31 @@
 //return random destination         
     function findRandomDestination(destinationSet) {
     
-        // math.random of all destinations  
+            // math.random of all destinations  
             var randomDestination = destinationSet.data[Math.floor(Math.random() * destinationSet.data.length)];
         
-        //random destination data set
+            //random destination data set
             console.log(randomDestination);
         
-//code for going to random view        
+            //code for going to random view in html        
             $("#title").html("Random");    
             $("#user-location").html("You are currently at " + randomDestination.from +  "!");
         
             $("#random").html("But maybe you want an adventure, so go explore " + randomDestination.to + " it will only take you" + randomDestination.duration + "!");
-        
+
+            //get images        
+            var imgUrlHttps = randomDestination.destinationImage;
+            var imgUrlHttp = imgUrlHttps.replace("https","http");
+            console.log(imgUrlHttp);       
+            var imgUrl = 'url('+imgUrlHttp+')';
+            $('#img-container').css("background-image", imgUrl);
+
+            //show and hide buttons        
             $("#get-closest").hide();
             $("#get-random").hide();
             $("#back").show();
     }
+
 
 // get destinations data    
     function getDestinationsCoords(destinationCoordsData) {
@@ -121,7 +140,7 @@
 
     
     function getDestinationsData() {
-            
+// use urlEncode***     
              var fusionUrl = "https://www.googleapis.com/fusiontables/v1/";
              var allDataQuery = "query?sql=SELECT%20*%20FROM%20";
              var fusionTableId = "1uljVsKPiMm45Sjs41B6KHlXmvoa8STcU8p-dCLE";
