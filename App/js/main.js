@@ -104,6 +104,7 @@
             getBg(randomDestination.destinationImage)
 
             buttonsControl();
+            $('#more-random').show();
     }
 
  //get destination backgrounds images
@@ -181,9 +182,9 @@
 
     //show and hide buttons
     function buttonsControl() {
-        $("#get-closest").hide();
-        $("#get-random").hide();
-        $("#back").show();
+        $('#get-closest').hide();
+        $('#get-random').hide();
+        $('#back').show();
     }
 
 
@@ -192,6 +193,7 @@
 
     // click to get random
     $('#get-random').click(_destinationSet,findRandomDestination);
+    $('#more-random').click(_destinationSet,findRandomDestination);
 
 
 
