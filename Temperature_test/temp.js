@@ -8,10 +8,10 @@ function getWeatherData (api) {
 //	var coords = "";
 	var numDays = 1;
 	var format = "json";
-	var amazingCallback = "?"
+	var apiCallback = "?"
 	var key = "f932x2a5kct424atxm6ned9z";
 
-	var fullQueryUrl = url+city+"&format="+format+"&num_of_days="+numDays+"&Callback="+amazingCallback+"&key="+key;
+	var fullQueryUrl = url+city+"&format="+format+"&num_of_days="+numDays+"&Callback="+apiCallback+"&key="+key;
 
 	console.log(fullQueryUrl);
 
@@ -40,25 +40,26 @@ getWeatherData();
 
 function getWaterData (waterApi) {
 	var url = "http://api.worldweatheronline.com/free/v1/marine.ashx?q=";
-	var q = "38.88944,-77.03533";
+	var q = "59.329,18.06511";
 	var format = "json";
-	var marineCallback = "?";
+	var apiCallback = "?";
 	var key = "f932x2a5kct424atxm6ned9z";
 
-var fullQueryUrl = url+q+"&format="+format+"&Callback="+marineCallback+"&key="+key;
+var fullQueryUrl = url+q+"&format="+format+"&Callback="+apiCallback+"&key="+key;
 
 	console.log(fullQueryUrl);
 
-	$.getJSON(fullQueryUrl, getWaterData);
+	$.getJSON(fullQueryUrl, getWaterTemp);
 	
 };
 
-function getTempWater (waterTemp) {
-	var waterTemperature = waterTemp.data.request.weather[0].waterTemp_C;
-	var q = waterData.data.request[0].query; 
+function getWaterTemp (waterTemp) {
+	var waterTemperature = waterTemp.data.weather[0].hourly[0].waterTemp_C;
+	console.log(waterTemperature);
+	var q = waterTemp.data.request[0].query; 
 	var celsius = String.fromCharCode(176)+"C";
 
-	console.log("It is "+waterTemperature+" and the temperature in "+q+" is "+waterTemperature+celsius); 
+	console.log("The water temperature in Stockholm is "+waterTemperature+celsius); 
 	
 	
 	}
