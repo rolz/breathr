@@ -1,5 +1,5 @@
 .p {
-  color:black;
+  color:blue;
 }
 
 .container {
@@ -12,22 +12,32 @@
   margin-bottom:30px;
 }
 
+#weather {
+  color:blue;
+}
+
 #jumbotron {
   text-align: center;
 }
 #jumbotron h2 {
   font-size: 6.000em;
   line-height: 1;
-  color:black;
+  color:blue;
 }
 
 #img-container {
   display: block;
   position: absolute;     
   width: 100%;
-  background-image:url('../img/sthlm_water_bg.jpg');
-  /*background-image:url('http://pbs.twimg.com/media/BWJgBZdIgAA1Qd2.jpg');*/    
+  background-image:url('../img/sthlm_water_bg.jpg');    
   margin: 0 auto;
   height:100%;
-  /*background-size: 100%;*/    
+/*  background-size: 100%;*/
+}
+
+#directions-panel {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color:rgba(255, 255, 255,0.5);    
 }

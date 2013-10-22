@@ -6,14 +6,14 @@
     var originPosition = null;
     var _destinationSet = [];
     
-//? how do i get the destinations coords array out and match up with the right the proximity data in a object    
-    function getDistances (destinationCoordsArray, destinationImage) {  
+// get distances between origin and destinations    
+    function getDistances (destinationCoords, destinationImage) {  
         
         var service = new google.maps.DistanceMatrixService();
                 service.getDistanceMatrix(  
                   {
                     origins: [originPosition],
-                    destinations: [destinationCoordsArray],  
+                    destinations: [destinationCoords],  
                     travelMode: google.maps.TravelMode.WALKING,
                     unitSystem: google.maps.UnitSystem.METRIC
                   }, callback);
@@ -41,7 +41,7 @@
                                                  from: from,
                                                  to: to,
                                                  originCoords: originPosition,
-                                                 destinationCoords: destinationCoordsArray,
+                                                 destinationCoords: destinationCoords,
                                                  destinationImage: destinationImage}; 
                               
                               //destinationsValuesArray.push(proximityData); 
@@ -52,7 +52,7 @@
                 }
     }
 
-//Find closest destination
+//return closest destination
     function getClosest(destinationSet) {
         
             //full destination data set
@@ -80,18 +80,26 @@
         
             $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
        
-            getBg(closestDestination.destinationImage)
-    
+            //get bg
+            getBg(closestDestination.destinationImage);
+        
             buttonsControl();
+        
+            //get directions
+            calcDirections(closestDestination.destinationCoords);
+    
+            
      }
 
 
 //return random destination         
     function findRandomDestination(destinationSet) {
-    
-            // math.random of all destinations  
-            var randomDestination = destinationSet.data[Math.floor(Math.random() * destinationSet.data.length)];
         
+//            $('directions-panel').empty();
+    
+// math.random of all destinations  ***** without repeating
+            var randomDestination = destinationSet.data[Math.floor(Math.random() * destinationSet.data.length)];
+ 
             //random destination data set
             console.log(randomDestination);
         
@@ -101,23 +109,58 @@
         
             $("#random").html("But maybe you want an adventure, so go explore " + randomDestination.to + " it will only take you " + randomDestination.duration + "!");
         
-            getBg(randomDestination.destinationImage)
-
+            //get bg
+            getBg(randomDestination.destinationImage);
+        
             buttonsControl();
+        
             $('#more-random').show();
+        
+            //get directions
+            calcDirections(randomDestination.destinationCoords);
+
+            
     }
 
  //get destination backgrounds images
     function getBg(imgDestination) {
         
-        var imgUrlHttps = imgDestination;
-        var imgUrlHttp = imgUrlHttps.replace("https","http");
-        console.log(imgUrlHttp);       
-        var imgUrl = 'url('+imgUrlHttp+')';
-        $('#img-container').css("background", "url(http://pbs.twimg.com/media/BWHwn9qIUAAOu90.jpg)");
+//        var imgUrlHttps = imgDestination;
+//        var imgUrlHttp = imgUrlHttps.replace("https","http");
+//        console.log(imgUrlHttp);       
+//        var imgUrl = 'url('+imgUrlHttp+')';
+        var imgUrl = imgDestination;
+        $('#img-container').css("background", 'url('+imgUrl+')');
         
     }
-    
+
+//add directions
+
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+
+    function calcDirections(directionsCoords) {    
+        
+          directionsDisplay = new google.maps.DirectionsRenderer();
+          $('#directions-panel').empty();    
+          directionsDisplay.setPanel(document.getElementById('directions-panel'));
+                
+          var start = originPosition;
+          console.log(originPosition);
+          var end = directionsCoords;
+          console.log(directionsCoords);
+          var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.WALKING
+          };
+          directionsService.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+              directionsDisplay.setDirections(response);
+            }
+          });
+     }
+
 
 // get destinations data    
     function getDestinationsCoords(destinationCoordsData) {
@@ -125,8 +168,8 @@
             for (i=0;i<destinationCoordsData.rows.length;i++){
                 var raw = destinationCoordsData.rows[i];
                 //getting google maps json, this has lat and lng
-                var destinationMedia = raw[1];
-                var destinationCoords = new google.maps.LatLng(raw[3],raw[4]);
+                var destinationMedia = raw[6];
+                var destinationCoords = new google.maps.LatLng(raw[2],raw[3]);
                 
                 // this is coords data of destinations
                 // 4th callback to get distance function  
@@ -134,9 +177,10 @@
             }
     } 
 
-    
+
+// get points from fusion table    
     function getDestinationsData() {
-// use urlEncode***     
+            //***use urlEncode***     
              var fusionUrl = "https://www.googleapis.com/fusiontables/v1/";
              var allDataQuery = "query?sql=SELECT%20*%20FROM%20";
              var fusionTableId = "1uljVsKPiMm45Sjs41B6KHlXmvoa8STcU8p-dCLE";
@@ -150,7 +194,7 @@
     }
 
 
-    // get origin location   
+// get origin location   
     function geoLoc(p) {    
             var originLat = p.coords.latitude;
             var originLng = p.coords.longitude;
@@ -231,8 +275,9 @@ function getTemperatureInfo (weatherData) {
 
     // click to get random
     $('#get-random').click(_destinationSet,findRandomDestination);
-    $('#more-random').click(_destinationSet,findRandomDestination);
 
+    //cycle through random destination
+    $('#more-random').click(_destinationSet,findRandomDestination);
 
     $("#back").click(function() {
         window.location.reload()

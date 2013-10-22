@@ -5,68 +5,78 @@
     
 <head>
     <title>Breathr</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="css/style.css" rel="stylesheet" media="screen">
     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">  
    
 </head>
 
     
 <body>
     <div id="img-container">
-      
-            <div class="header" id="weather-header">
-                <div class="row">
-                    <div id="weather" class="col-xs-2 col-sm-2 col-md-2"></div>
-                    <div class="col-xs-10 col-sm-10 col-md-10"></div>
+      <div class="row">
+          <div class="col-md-8">
+                <div class="header" id="weather-header">
+                    <div class="row">
+                        <div id="weather" class="col-md-4"></div> 
+                        <div class="col-md-8"></div>
+                    </div>
                 </div>
-            </div>
         
-            <div class="container">
-            <div class="row"> 
-                <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
-                    <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
-                </div>
-                <div id="jumbotron" class="col-xs-10 col-sm-8 col-md-6">
-                    <h2><div id="title">Find a View!</div></h2>
-                </div> 
-               <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
-                   <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
-               </div>
-            </div>  
-          
-            <div class="row">
-                <div id="user-info" class="col-xs-12 col-sm-12 col-md-12"></div>
-                    <div class="p" id="user-location"></div>
-            </div>
+                <div class="container">
+                    <div class="row"> 
+                        <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
+                            <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
+                        </div>
+                        <div id="jumbotron" class="col-xs-10 col-sm-8 col-md-6">
+                            <h2><div id="title">Find a View!</div></h2>
+                        </div> 
+                       <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
+                           <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
+                       </div>
+                    </div>  
+                  
+                    <div class="row">
+                        <div id="user-info" class="col-xs-12 col-sm-12 col-md-12"></div>
+                            <div class="p" id="user-location"></div>
+                    </div>
+                        
+                    <div class="row">
+                        <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
+                        <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
+                            <button type="button" id="get-closest" class="btn btn-default">Closest View</button>
+                        </div>
+                            
+                        <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
+                            <button type="button" id="get-random" class="btn btn-default">Random View</button>
+                        </div>  
+                        <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
+                    </div>
+                  
+                    <div class="row">
+                        <div id="destination-info" class="col-xs-12 col-sm-12 col-md-12">
                 
-            <div class="row">
-                <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
-                <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
-                    <button type="button" id="get-closest" class="btn btn-default">Closest View</button>
+                            <div class="p" id="closest"></div>
+                            <div class="p" id="random"></div>
+                            
+                        </div>
+                    </div>
                 </div>
-                    
-                <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
-                    <button type="button" id="get-random" class="btn btn-default">Random View</button>
-                </div>  
-                <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
-            </div>
+          </div>
           
-            <div class="row">
-                <div id="destination-info" class="col-xs-12 col-sm-12 col-md-12">
-        
-                    <div class="p" id="closest"></div>
-                    <div class="p" id="random"></div>
-                    
-                </div>
-            </div>
-          
-        </div>
-        
-        
-    </div>  
-   
+          <div class="col-md-4">
+              
+              <div class="row">
+                  <div id="directions-panel"></div>
+              </div>
+              
+          </div>
+
+      </div>  
+   </div>
     
 <!--scripts-->    
     <script src="js/jquery.js"></script>
