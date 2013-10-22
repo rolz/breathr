@@ -14,6 +14,11 @@
 
 #weather {
   color:blue;
+  float:left;
+}
+
+#marine {
+  color:blue;    
 }
 
 #jumbotron {

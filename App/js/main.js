@@ -125,10 +125,6 @@
  //get destination backgrounds images
     function getBg(imgDestination) {
         
-//        var imgUrlHttps = imgDestination;
-//        var imgUrlHttp = imgUrlHttps.replace("https","http");
-//        console.log(imgUrlHttp);       
-//        var imgUrl = 'url('+imgUrlHttp+')';
         var imgUrl = imgDestination;
         $('#img-container').css("background", 'url('+imgUrl+')');
         
@@ -225,6 +221,8 @@
     get_location();
 
 //get weather data 
+
+//temperature data
     function getWeatherData (api) {
 
 //http://api.worldweatheronline.com/free/v1/weather.ashx?q=stockholm&format=json&num_of_days=1&callback=?&key=86pdf5p7sa34xzrgbenmtjnb
@@ -237,29 +235,57 @@
     //	var coords = "";
         var format = "json";
 
-
-
-
 	   var fullQueryUrl = url+city+"&format="+format+"&num_of_days="+numDays+"&callback="+amazingCallback+"&key="+key;
 
 	//console.log(fullQueryUrl);
 
 	   $.getJSON(fullQueryUrl, getTemperatureInfo);
-};
+    };
 
-
-
-function getTemperatureInfo (weatherData) {
-		var currentTemperature = weatherData.data.current_condition[0].temp_C;
-		var city = weatherData.data.request[0].query;
-		var celsius = String.fromCharCode(176)+"C";
+    function getTemperatureInfo (weatherData) {
+        var currentTemperature = weatherData.data.current_condition[0].temp_C;
+        var city = weatherData.data.request[0].query;
+        var celsius = String.fromCharCode(176)+"C";
         var weatherDesc = weatherData.data.current_condition[0].weatherDesc[0].value;
-		console.log("the temperature in "+city+" is "+currentTemperature+celsius);
+        
+        console.log("the temperature in "+city+" is "+currentTemperature+celsius);
         $('#weather').html("It is " + weatherDesc + " and the temperature in " + city + " is " +currentTemperature+celsius);
-};
+    };
+    getWeatherData();
 
 //  weather data callback
-    getWeatherData();
+    
+
+//Marine weather
+
+    function getWaterData (waterApi) {
+        var url = "http://api.worldweatheronline.com/free/v1/marine.ashx?q=";
+        var q = "59.329,18.06511";
+        var format = "json";
+        var apiCallback = "?";
+        var key = "f932x2a5kct424atxm6ned9z";
+    
+        var fullQueryUrl = url+q+"&format="+format+"&Callback="+apiCallback+"&key="+key;
+    
+        console.log(fullQueryUrl);
+    
+        $.getJSON(fullQueryUrl, getWaterTemp);
+        
+    };
+    
+    function getWaterTemp (waterTemp) {
+        var waterTemperature = waterTemp.data.weather[0].hourly[0].waterTemp_C;
+        console.log(waterTemperature);
+        var q = waterTemp.data.request[0].query; 
+        var celsius = String.fromCharCode(176)+"C";
+    
+        console.log("The water temperature in Stockholm is " + waterTemperature + celsius);
+        $('#marine').html("The water temperature in Stockholm is "+waterTemperature+celsius);
+    
+    };
+    getWaterData();
+
+
 
 
 //show and hide buttons
