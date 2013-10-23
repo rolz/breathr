@@ -7,14 +7,15 @@
   margin-top:12%;
   text-align:center;
 }
+
 .row {
   text-align:center;
-  margin-bottom:30px;
+  margin-top:5px;    
+  margin-bottom:5px;
 }
 
 #weather {
   color:blue;
-  float:left;
 }
 
 #marine {
@@ -47,6 +48,14 @@
   background-color:rgba(255, 255, 255,0.5);    
 }
 
+#callback-menu {
+    color:blue;
+}
+
 .clearfix {
     clear: both;
+}
+
+#directions-menu {
+    display: none
 }

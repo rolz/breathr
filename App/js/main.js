@@ -44,7 +44,7 @@
                                                  destinationCoords: destinationCoords,
                                                  destinationImage: destinationImage}; 
                               
-                              //destinationsValuesArray.push(proximityData); 
+                              console.log(proximityData); 
                               _destinationSet.push(proximityData);
                             }
                         }
@@ -86,9 +86,7 @@
             buttonsControl();
         
             //get directions
-            calcDirections(closestDestination.destinationCoords);
-    
-            
+            calcDirections(closestDestination.destinationCoords);            
      }
 
 
@@ -117,9 +115,7 @@
             $('#more-random').show();
         
             //get directions
-            calcDirections(randomDestination.destinationCoords);
-
-            
+            calcDirections(randomDestination.destinationCoords);            
     }
 
  //get destination backgrounds images
@@ -138,8 +134,8 @@
     function calcDirections(directionsCoords) {    
         
           directionsDisplay = new google.maps.DirectionsRenderer();
-          $('#directions-panel').empty();    
-          directionsDisplay.setPanel(document.getElementById('directions-panel'));
+          $('#sidr-right').empty();    
+          directionsDisplay.setPanel(document.getElementById('sidr-right'));
                 
           var start = originPosition;
           console.log(originPosition);
@@ -156,6 +152,13 @@
             }
           });
      }
+
+//add sidr
+
+    $('#right-menu').sidr({
+      name: 'sidr-right',
+      side: 'right'
+    });
 
 
 // get destinations data    
@@ -197,6 +200,7 @@
             
         // make sure its arguments and not a string
             originPosition = new google.maps.LatLng(originLat, originLng);
+        console.log('this is originPosition '+originPosition);
             
         // check we get coords, needs to be logged 1st
             console.log("My location is latitude " + originLat + " and longitude " + originLng);

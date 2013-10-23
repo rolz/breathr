@@ -11,75 +11,86 @@
     
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">  
+    <link rel="stylesheet" href="css/jquery.sidr.light.css">
    
 </head>
 
     
 <body>
+    
+   
+    <div class="row">
+        <div id="weather" class="col-md-5"></div>
+        <div id="marine" class="col-md-5"></div>
+        <div class="col-md-2"><a id="right-menu" href="#right-menu">Directions</a> </div>
+    </div>
+
+    
     <div id="img-container">
-        
-        <div class="header" id="weather-header">
+          
             <div class="row">
-                    <div class="row">
-                        <div id="weather" class="col-md-6"></div>
-                        <div id="marine" class="col-md-6"></div>
-                        <div class="clearfix"></div>
-                    </div>
-            </div>
-        </div>
-        
-        <div class="container">
-            <div class="row"> 
-                <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
-                    <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
-                </div>
-                <div id="jumbotron" class="col-xs-10 col-sm-8 col-md-6">
-                            <h2><div id="title">Find a View!</div></h2>
-                        </div> 
-                       <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
-                           <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
-                       </div>
-                    </div>  
-                  
-                    <div class="row">
-                        <div id="user-info" class="col-xs-12 col-sm-12 col-md-12"></div>
-                            <div class="p" id="user-location"></div>
-                    </div>
+                <div class="col-md-12">
+                    
+                    <div class="container">
                         
-                    <div class="row">
-                        <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
-                        <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
-                            <button type="button" id="get-closest" class="btn btn-default">Closest View</button>
+                    <div class="row"> 
+                        <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
+                            
+                            <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
+                            
+                        </div>
+                        
+                        <div id="jumbotron" class="col-xs-10 col-sm-8 col-md-6">
+                            
+                            <h2><div id="title">Find a View!</div></h2>
+                            
+                        </div> 
+                        
+                        <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
+                            
+                            <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
+                            
+                        </div>
+                        
+                    </div>  
+                      
+                        <div class="row">
+                            <div id="user-info" class="col-xs-12 col-sm-12 col-md-12"></div>
+                                <div class="p" id="user-location"></div>
                         </div>
                             
-                        <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
-                            <button type="button" id="get-random" class="btn btn-default">Random View</button>
-                        </div>  
-                        <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
-                    </div>
-                  
-                    <div class="row">
-                        <div id="destination-info" class="col-xs-12 col-sm-12 col-md-12">
-                
-                            <div class="p" id="closest"></div>
-                            <div class="p" id="random"></div>
-                            
+                        <div class="row">
+                            <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
+                            <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
+                                <button type="button" id="get-closest" class="btn btn-default">Closest</button>
+                            </div>
+                                
+                            <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
+                                <button type="button" id="get-random" class="btn btn-default">Random</button>
+                            </div>  
+                            <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
+                        </div>
+                      
+                        <div class="row">
+                            <div id="destination-info" class="col-xs-12 col-sm-12 col-md-12">
+                    
+                                <div class="p" id="closest"></div>
+                                <div class="p" id="random"></div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
-          </div>
-          <div class="col-md-4">
-              <div class="row">
-                  <div id="directions-panel"></div>
-              </div>
-              
-          </div>
-          
-          </div>
-          
-          
-      
-    </div>  
+<!--
+                <div class="col-md-4">    
+                    <a id="directions-menu" href="#directions-menu">Right Menu</a>
+                </div> 
+-->
+            </div>
+    </div>
+        
+        
+        
    
     
 <!--scripts-->    
@@ -87,7 +98,8 @@
     <script src="js/modernizr.js"></script>
     <script src="js/geoPosition.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
-    <script src="js/main.js"></script> 
+    <script src="js/jquery.sidr.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/bootstrap.min.js"></script>
     
 </body>
