@@ -28,9 +28,16 @@ function getTempInfo (weatherData) {
 	var weatherDesc = weatherData.data.current_condition[0].weatherDesc[0].value;
 	var weatherCode = weatherData.data.current_condition[0].weatherCode;
 
+	console.log(weatherCode);
+
 	console.log("It is "+weatherDesc+" and the temperature in "+city+" is "+currentTemperature+celsius); 
 	
+	$("#weather").html("It is "+weatherDesc+" and the temperature in "+city+" is "+currentTemperature+celsius);
 	
+	var climacon = "climacons/"+weatherCode+".png"
+
+	$("#weathericon").html('<img src="'+climacon+'">');
+
 	}
 
 getWeatherData();
