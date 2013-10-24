@@ -17,61 +17,90 @@
 
     
 <body>
-    
-   
-    <div class="row">
-        <div id="weather" class="col-md-5"></div>
-        <div id="marine" class="col-md-5"></div>
-        <div class="col-md-2"><a id="right-menu" href="#right-menu">Directions</a> </div>
-    </div>
-
-    
+        
     <div id="img-container">
-          
+        
+    <!--Navbar-->
+            
+            <nav class="navbar navbar-default" role="navigation">
+              <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="img/logo_blue.png"/></a>
+                  </div>
+                
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav navbar-center">
+                      <li><div id="weathericon"></div></li>        
+                      <li><p class="navbar-text" id="weather"></p></li>
+                      <li><p class="navbar-text" id="marine"></p></li>        
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">    
+                      <li><a href="map.html">Map</a></li>   
+                      <li><a id="right-menu" href="#right-menu">Directions</a></li>     
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+            </nav> 
+        
+    <!--back & more-->
+    
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
+                </div>
+            </div>       
+        
+        
+        
+            
+        
+<!--Page Main-->          
             <div class="row">
                 <div class="col-md-12">
                     
                     <div class="container">
                         
                     <div class="row"> 
-                        <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
-                            
-                            <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
-                            
-                        </div>
                         
-                        <div id="jumbotron" class="col-xs-10 col-sm-8 col-md-6">
+                        <div id="jumbotron" class="col-md-12">
                             
                             <h2><div id="title">Find a View!</div></h2>
                             
                         </div> 
                         
-                        <div id="jumbotron" class="col-xs-1 col-sm-2 col-md-3">
-                            
-                            <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
-                            
-                        </div>
-                        
                     </div>  
                       
                         <div class="row">
+                            
                             <div id="user-info" class="col-xs-12 col-sm-12 col-md-12"></div>
                                 <div class="p" id="user-location"></div>
-                        </div>
+                            </div>
                             
                         <div class="row">
+                            
                             <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
                             <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
-                                <button type="button" id="get-closest" class="btn btn-default">Closest</button>
+                                <button type="button" id="get-closest" class="btn btn-default" href="#">Closest</button>
                             </div>
                                 
                             <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
-                                <button type="button" id="get-random" class="btn btn-default">Random</button>
+                                <button type="button" id="get-random" class="btn btn-default" href="#">Random</button>
                             </div>  
                             <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
+                            
                         </div>
                       
                         <div class="row">
+                            
                             <div id="destination-info" class="col-xs-12 col-sm-12 col-md-12">
                     
                                 <div class="p" id="closest"></div>
@@ -81,11 +110,6 @@
                         </div>
                     </div>
                 </div>
-<!--
-                <div class="col-md-4">    
-                    <a id="directions-menu" href="#directions-menu">Right Menu</a>
-                </div> 
--->
             </div>
     </div>
         
