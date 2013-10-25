@@ -1,0 +1,91 @@
+    <!DOCTYPE html>
+
+<html>
+
+    
+<head>
+    <title>Maptest</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+  
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">    
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+    <link href="css/map.css" rel="stylesheet" media="screen">  
+   
+</head>
+
+    
+<body>
+    
+    
+       
+            <!--Navbar-->
+            
+            <nav class="navbar navbar-default mapnav" role="navigation">
+              <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <ul class="weather-info">
+   
+                   
+<!--
+                      <li><div id="weathericon"></div></li>    
+                      <li><p class="navbar-text" id="weather"></p></li>
+                      <li><p class="navbar-text" id="marine"></p></li> 
+-->
+
+                    </ul>
+                      <a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a>
+                  </div>
+                
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav navbar-right"> 
+                        
+<!-- add directions from clicking map point --
+                      <li><a id="right-menu" href="#right-menu" style="display:none">Directions</a></li>     
+-->
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+            </nav> 
+        
+       
+        
+     
+            <div id='map'></div>
+ 
+    
+    
+    
+    
+    
+
+    
+
+	
+	
+	
+	
+	
+    
+<!--scripts-->    
+    <script src="js/jquery.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/geoPosition.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+	<script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script> 
+    <script src="js/map.js"></script> 
+    <script src="js/bootstrap.min.js"></script>
+ 
+</body>
+
+
+
+</html>
+

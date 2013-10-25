@@ -1,0 +1,62 @@
+.navbar-default {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-color: transparent;
+}
+
+.navbar {
+    height: 50px;
+    overflow: visible;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding:0px 0px;
+}
+
+.weather-info {
+    float:left;
+}
+
+.navbar-brand {
+    height: 50px;
+    overflow: visible;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding:0px 0px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto; 
+}
+
+.navbar .navbar-brand img{
+    max-height:100%;
+}
+
+
+.p {
+    color:#ffffff;
+}
+
+
+
+#right-menu {
+   color:#0751BD; 
+}
+
+#weather {
+    color:#0751BD; 
+}
+
+#marine {   
+    color:#0751BD;
+}
+
+
+#map{
+    position:absolute; top:0; bottom:0; width:100%;
+}
+
+.clearfix {
+    clear: both;
+}
+

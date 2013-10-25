@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
     <link href="css/style.css" rel="stylesheet" media="screen">  
     <link rel="stylesheet" href="css/jquery.sidr.light.css">
    
@@ -31,25 +32,33 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="img/logo_blue.png"/></a>
+                      <a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a>
                   </div>
                 
                   <!-- Collect the nav links, forms, and other content for toggling -->
                   <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav navbar-center">
-                      <li><div id="weathericon"></div></li>        
-                      <li><p class="navbar-text" id="weather"></p></li>
-                      <li><p class="navbar-text" id="marine"></p></li>        
+                    <ul class="nav navbar-nav navbar-left">   
+                      <li><a id="map-link" href="map.html">Map</a></li>  
+                      <li><a id="about-link" href="#about">About</a></li> 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">    
-                      <li><a href="map.html">Map</a></li>   
-                      <li><a id="right-menu" href="#right-menu">Directions</a></li>     
+                      <li><a id="right-menu" href="#right-menu" style="display:none">Directions</a></li>     
                     </ul>
                   </div><!-- /.navbar-collapse -->
             </nav> 
         
     <!--back & more-->
-    
+        <div id="main">
+        
+            <div id="weather-box">
+                <div class"row">
+                        <div id="weather"></div>
+                        <div id="marine"></div>
+                        <div id="weathericon"></div>
+            
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-xs-6 col-md-6">
                     <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
@@ -59,25 +68,26 @@
                 </div>
             </div>       
         
-        
-        
-            
-        
-<!--Page Main-->          
+<!--
+    content             
+-->
             <div class="row">
                 <div class="col-md-12">
                     
                     <div class="container">
                         
+<!-- use this for your messsage***
+
                     <div class="row"> 
                         
                         <div id="jumbotron" class="col-md-12">
                             
-                            <h2><div id="title">Find a View!</div></h2>
+                            
                             
                         </div> 
                         
                     </div>  
+-->
                       
                         <div class="row">
                             
@@ -111,19 +121,33 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
+    
+    
+<!--     <div id='map' style="display:none"></div>    -->
+        <div id="about" style="display:none">
+            <div class="row"> 
+                            
+                        <div id="jumbotron" class="col-md-12">
+                                
+                           <p>Very Violent Fish</p>     
+                                
+                        </div> 
+                            
+            </div>
         
-        
-        
-   
+        </div>     
+   </div> 
     
 <!--scripts-->    
     <script src="js/jquery.js"></script>
     <script src="js/modernizr.js"></script>
     <script src="js/geoPosition.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
     <script src="js/jquery.sidr.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
     <script src="js/bootstrap.min.js"></script>
     
 </body>

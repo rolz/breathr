@@ -1,10 +1,9 @@
 .navbar-default {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 1.0);
     border-color: transparent;
 }
 
-
-.navbar .navbar-brand {
+.navbar {
     height: 50px;
     overflow: visible;
     padding-top: 0;
@@ -12,13 +11,28 @@
     padding:0px 0px;
 }
 
+.weather-info {
+    float:left;
+}
+
+.navbar-brand {
+    height: 50px;
+    overflow: visible;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding:0px 0px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto; 
+    z-index:-1;
+}
+
 .navbar .navbar-brand img{
     max-height:100%;
 }
 
-.p {
-  color:blue;
-}
 
 .container {
   margin: 0 auto;
@@ -32,13 +46,30 @@
   margin-bottom:5px;
 }
 
-#weather {
-  color:blue;
+.p {
+    color:#ffffff;
 }
 
-#marine {
-  color:blue;    
+#map-link {
+    color:#0751BD;
 }
+
+#right-menu {
+   color:#0751BD; 
+}
+
+#weather {
+    color:#B40404; 
+}
+
+#weathericon {
+  padding-left:5%;
+}
+
+#marine {   
+    color:#B40404;
+}
+
 
 #jumbotron {
   text-align: center;
@@ -53,13 +84,30 @@
   display: block;
   position: absolute;     
   width: 100%;
-  background-image:url('../img/sthlm_water_bg.jpg');    
-  margin: 0 auto;
   height:100%;
-/*  background-size: 100%;*/
+  background-image:url('../img/bg-real.png');    
+  margin: 0 auto;
+  background-size: 100%;
+}
+
+#map{
+    position:absolute; top:0; bottom:0; width:100%;
+}
+
+#about{
+    
 }
 
 .clearfix {
     clear: both;
 }
 
+#weather-box {
+    border:80%;
+    border-color: transparent;
+    padding-left:5%;
+    padding-top:3%;
+    align-items:center;
+    border:
+    
+}

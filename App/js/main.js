@@ -251,9 +251,18 @@
         var city = weatherData.data.request[0].query;
         var celsius = String.fromCharCode(176)+"C";
         var weatherDesc = weatherData.data.current_condition[0].weatherDesc[0].value;
+        var weatherCode = weatherData.data.current_condition[0].weatherCode;
         
         console.log("the temperature in "+city+" is "+currentTemperature+celsius);
+        
+        //temperature+weather
         $('#weather').html("It is " + weatherDesc + " and the temperature in " + city + " is " +currentTemperature+celsius);
+        
+        var climacon = "img/climacons/"+weatherCode+".png"
+        
+        //weather icon
+	   $("#weathericon").html('<img src="'+climacon+'">');
+        
     };
     getWeatherData();
 
@@ -297,6 +306,7 @@
         $('#get-closest').hide();
         $('#get-random').hide();
         $('#back').show();
+        $('#right-menu').show();
     }
 
 
@@ -308,10 +318,26 @@
 
     //cycle through random destination
     $('#more-random').click(_destinationSet,findRandomDestination);
+    
+//    function map(){
+//        $('#image-container').hide();
+//        $('#map').show();
+//    };
+//    
+//    $('#map-link').click(map);
+
+    function about() {
+        $('#main').hide();
+        $('#about').show();
+    }
+
+    $('#about-link').click(about);
 
     $("#back").click(function() {
         window.location.reload()
     });
+
+    
 
 // my key: AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM
 // test table id: 1uljVsKPiMm45Sjs41B6KHlXmvoa8STcU8p-dCLE 
