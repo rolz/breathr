@@ -32,7 +32,7 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-                      <a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a>
+                      <a class="navbar-brand" href="" ><img id="logo" src="img/logo.png"/></a>
                   </div>
                 
                   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -47,97 +47,87 @@
                   </div><!-- /.navbar-collapse -->
             </nav> 
         
-    <!--back & more-->
-        <div id="main">
+    <!--Main-->
         
-            <div id="weather-box">
-                <div class"row">
-                        <div id="weather"></div>
-                        <div id="marine"></div>
-                        <div id="weathericon"></div>
+            <div id="wrap">
             
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-xs-6 col-md-6">
-                    <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>
-                </div>
-                <div class="col-xs-6 col-md-6">
-                    <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
-                </div>
-            </div>       
-        
-<!--
-    content             
--->
-            <div class="row">
-                <div class="col-md-12">
-                    
-                    <div class="container">
-                        
-<!-- use this for your messsage***
+            <div id="main" style="display:none">
 
-                    <div class="row"> 
-                        
-                        <div id="jumbotron" class="col-md-12">
-                            
-                            
-                            
-                        </div> 
-                        
-                    </div>  
--->
-                      
-                        <div class="row">
-                            
-                            <div id="user-info" class="col-xs-12 col-sm-12 col-md-12"></div>
-                                <div class="p" id="user-location"></div>
-                            </div>
-                            
-                        <div class="row">
-                            
-                            <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
-                            <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
-                                <button type="button" id="get-closest" class="btn btn-default" href="#">Closest</button>
-                            </div>
-                                
-                            <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
-                                <button type="button" id="get-random" class="btn btn-default" href="#">Random</button>
-                            </div>  
-                            <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
-                            
-                        </div>
-                      
-                        <div class="row">
-                            
-                            <div id="destination-info" class="col-xs-12 col-sm-12 col-md-12">
                     
-                                <div class="p" id="closest"></div>
-                                <div class="p" id="random"></div>
-                                
-                            </div>
-                        </div>
+                <div id="weather-box">
+                    <div class"row">
+                            <div id="weathericon"></div>
+                            <div id="weather"></div>
+                            <div id="marine"></div>
                     </div>
                 </div>
+                        
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+<!--                        <button type="button" id="back" class="btn btn-default" style="display:none">Back</button>-->
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <button type="button" id="more-random" class="btn btn-default" style="display:none">More</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="user-info" class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="p" id="user-location"></div>
+                    </div>
+                </div>
+
+                 <div class="row">
+                                
+                    <div id="destination-info" class="col-xs-12 col-sm-12 col-md-12">
+
+                        <div class="p" id="closest"></div>
+                        <div class="p" id="random"></div>
+
+                    </div>
+                </div>
+
+               <div class="row">
+                                
+                    <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
+                    <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
+                        <button type="button" id="get-closest" class="btn-custom btn-default" href="#"><h3>Closest</h3></button>
+                    </div>
+                    <div id ="click" class="col-xs-12 col-sm-3 col-md-2">
+                        <button type="button" id="get-random" class="btn-custom btn-default" href="#"><h3>Random</h3></button>
+                    </div>
+                    <div id ="click" class="col-xs-0 col-sm-3 col-md-4"></div>
+
+                </div>
+
+                <div id="about" style="display:none">
+                    <div class="row">
+
+                                <div id="jumbotron" class="col-md-12">
+
+                                   <p>Very Violent Fish</p>
+
+                                </div>
+                    </div>
+
+                </div>
             </div>
+
         </div>
+<!---Footer-->
+
+
+        <nav class="navbar-footer navbar-default navbar-fixed-bottom" role="navigation">
+  Made at Hyper Island by Barni, Tracy and Zac
+        </nav>
+
+
+    </div> <!--img-container end-->
+
+
+
     
-    
-<!--     <div id='map' style="display:none"></div>    -->
-        <div id="about" style="display:none">
-            <div class="row"> 
-                            
-                        <div id="jumbotron" class="col-md-12">
-                                
-                           <p>Very Violent Fish</p>     
-                                
-                        </div> 
-                            
-            </div>
-        
-        </div>     
-   </div> 
+
     
 <!--scripts-->    
     <script src="js/jquery.js"></script>
@@ -147,7 +137,6 @@
     <script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
     <script src="js/jquery.sidr.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/map.js"></script>
     <script src="js/bootstrap.min.js"></script>
     
 </body>

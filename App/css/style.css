@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 .navbar-default {
     background-color: rgba(255, 255, 255, 1.0);
     border-color: transparent;
@@ -11,8 +15,8 @@
     padding:0px 0px;
 }
 
-.weather-info {
-    float:left;
+.navbar-toggle {
+    z-index: 1;
 }
 
 .navbar-brand {
@@ -26,13 +30,21 @@
     left: 0;
     text-align: center;
     margin: auto; 
-    z-index:-1;
+    z-index: 0;
 }
 
 .navbar .navbar-brand img{
     max-height:100%;
 }
 
+#wrap {
+    min-height:100%;
+}
+
+#main {
+    overflow: auto;
+    padding-bottom: 150px;
+}
 
 .container {
   margin: 0 auto;
@@ -50,26 +62,62 @@
     color:#ffffff;
 }
 
+.btn-custom {
+    background-color: rgba(1,1,1,0.1);
+    width: 100%;
+    height: 60px;
+    border: thin;
+    border-radius: 10px;
+}
+
+
+
 #map-link {
     color:#0751BD;
+    z-index:1;
+}
+
+#about-link {
+    color:#0751BD;
+    z-index:1;
 }
 
 #right-menu {
    color:#0751BD; 
+   z-index:1;
+}
+
+#weather-box {
+    background-color: rgba(1,1,1,0.1);
+    border-color: transparent;
+    align-items: center;
+    height: 100px;
+    width: 300px;
+    margin-left: 20px;
+    border-radius: 3px;
+    border: 2px;
+    border-color: rgba(255,255,255,0.8);
+}
+
+#weathericon img {
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    float: left;
 }
 
 #weather {
-    color:#B40404; 
-}
-
-#weathericon {
-  padding-left:5%;
-}
-
-#marine {   
+    margin-left: 5px;
     color:#B40404;
+    float:left;
+
 }
 
+#marine {
+    margin-left: 5px;
+    color:#B40404;
+    float:left;
+}
 
 #jumbotron {
   text-align: center;
@@ -95,19 +143,17 @@
 }
 
 #about{
+    color:#0751BD;
+    z-index:1;
     
+}
+
+.navbar-footer {
+    height: 40px;
+
 }
 
 .clearfix {
     clear: both;
 }
 
-#weather-box {
-    border:80%;
-    border-color: transparent;
-    padding-left:5%;
-    padding-top:3%;
-    align-items:center;
-    border:
-    
-}
