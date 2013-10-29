@@ -269,7 +269,10 @@ function StartViewModel() {
     self.marineIcon = "img/waves.png";
     self.closest = "img/closest.png";
     self.explore = "img/explore.png";
+    self.map = "img/map.png";
+    self.info = "img/info.png";
     self.more = "img/more.png";
+    self.walking = "img/walking_path.png";
     
     var celcius = String.fromCharCode(176) + "C";
 
@@ -320,7 +323,7 @@ function about() {
     $('#about').show();
 }
 
-$('#about-link').click(about);
+$('#info').click(about);
 
 // use it when you can control the explore views with it...everything in the browser!
 //$("#back").click(function() {
