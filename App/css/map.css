@@ -1,65 +1,226 @@
+html,
+body {
+    height: 100%;
+}
 .navbar-default {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255,255,255,0.0);
     border-color: transparent;
 }
-
 .navbar {
-    height: 50px;
+    height: 90px;
     overflow: visible;
     padding-top: 0;
     padding-bottom: 0;
-    padding:0px 0px;
+    padding: 0px 0px;
 }
 
-.weather-info {
-    float:left;
-}
-.navbar-toggle {
-    z-index: 1;
-}
 .navbar-brand {
-    height: 50px;
+    height: 110%;
     overflow: visible;
     padding-top: 0;
     padding-bottom: 0;
-    padding:0px 0px;
+    padding: 0px 0px;
     position: absolute;
     width: 100%;
     left: 0;
-    text-align: center;
-    margin: auto; 
+    text-align: left;
+    margin: auto;
     z-index: 0;
 }
-
-.navbar .navbar-brand img{
-    max-height:100%;
+.navbar .navbar-brand img {
+    max-height: 100%;
 }
-
-
-.p {
-    color:#ffffff;
-}
-
-
-
-#right-menu {
-   color:#0751BD; 
-}
-
-#weather {
-    color:#0751BD; 
-}
-
-#marine {   
-    color:#0751BD;
-}
-
 
 #map{
-    position:absolute; top:0; bottom:0; width:100%;
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    z-index:0;
 }
 
+#wrap {
+}
+
+#main {
+}
+
+.container {
+    margin: 0 auto;
+    margin-top: 12%;
+    text-align: center;
+}
+.row {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.p {
+    color: #ffffff;
+}
+
+.btn-custom-left {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 70px;
+    height: 70px;
+    border: thin;
+    border-radius: 3px;
+    margin-left: 20px;
+    color: #ffffff;
+    float: left;
+}
+
+.btn-custom:hover {
+    background-color: rgba(1, 1, 1, 0.3);
+    width: 70px;
+    height: 70px;
+    border: thin;
+    border-radius: 3px;
+    margin-left: 20px;
+    color: #ffffff;
+    float: left;
+}
+
+.btn-custom-right {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 70px;
+    height: 70px;
+    border: thin;
+    border-radius: 3px;
+    margin-right:20px;
+    color:#ffffff;
+    float:right;
+}
+
+.btn-custom-more:hover {
+    background-color: rgba(1, 1, 1, 0.3);
+    width: 70px;
+    height: 70px;
+    border: thin;
+    border-radius: 3px;
+    margin-right:20px;
+    color:#ffffff;
+    float:right;
+}
+
+#img-container {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left:0;
+    top:0;
+    margin: 0 auto;
+    z-index:1;
+/*
+    background-size: 100%;
+*/
+}
+
+#rows {
+    z-index:0;
+}
+
+#closest-icon {
+    width: 40px;
+    height: 40px;
+}
+
+#explore-icon {
+    width: 45px;
+    height: 45px;
+}
+
+#map-icon {
+    width: 50px;
+    height: 50px;
+}
+
+#info-icon {
+    width: 40px;
+    height: 40px;
+}
+
+#more-icon {
+    width: 40px;
+    height: 40px;
+}
+
+#walking-icon {
+    width: 40px;
+    height: 40px;
+    z-index:5;
+}
+
+#right-menu {
+    color: #ffffff;
+    z-index: 5;
+}
+
+#temp-box {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: transparent;
+    align-items: center;
+    height: 80px;
+    width: 70px;
+    margin-right: 20px;
+    border-radius: 3px;
+    border: 2px;
+    border-color: rgba(255, 255, 255, 0.8);
+    float: right;
+}
+
+#weathericon img {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 50px;
+}
+#weather {
+    margin-left: 5px;
+    color: #ffffff;
+}
+
+#marine-box {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: transparent;
+    align-items: center;
+    height: 80px;
+    width: 70px;
+    margin-right: 20px;
+    border-radius: 3px;
+    border: 2px;
+    border-color: rgba(255, 255, 255, 0.8);
+    float: right;
+}
+
+#marineicon {
+    width: 50px;
+    height: 50px;
+}
+
+#marine {
+    margin-left: 5px;
+    color: #ffffff;
+}
+#jumbotron {
+    text-align: center;
+}
+#jumbotron h2 {
+    font-size: 6.000em;
+    line-height: 1;
+    color: blue;
+}
+
+#about {
+    color: #ffffff;
+    z-index: 1;
+}
+.navbar-footer {
+    height: 40px;
+    color: #ffffff;
+    text-align: center;
+}
 .clearfix {
     clear: both;
 }
-
