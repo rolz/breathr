@@ -64,15 +64,15 @@ body {
     color: #ffffff;
 }
 
-.btn-custom {
+.btn-custom-left {
     background-color: rgba(255, 255, 255, 0.4);
     width: 70px;
     height: 70px;
     border: thin;
     border-radius: 3px;
-    margin-right: 20px;
+    margin-left: 20px;
     color: #ffffff;
-    float: right;
+    float: left;
 }
 
 .btn-custom:hover {
@@ -81,30 +81,30 @@ body {
     height: 70px;
     border: thin;
     border-radius: 3px;
-    margin-right: 20px;
+    margin-left: 20px;
     color: #ffffff;
-    float: right;
+    float: left;
 }
 
-.btn-custom-more {
+.btn-custom-right {
     background-color: rgba(255, 255, 255, 0.3);
     width: 70px;
-    height: 160px;
-    color:#ffffff;
+    height: 70px;
     border: thin;
     border-radius: 3px;
     margin-right:20px;
+    color:#ffffff;
     float:right;
 }
 
 .btn-custom-more:hover {
     background-color: rgba(1, 1, 1, 0.3);
     width: 70px;
-    height: 160px;
-    color:#ffffff;
+    height: 70px;
     border: thin;
-    border-radius: 10px;
+    border-radius: 3px;
     margin-right:20px;
+    color:#ffffff;
     float:right;
 }
 
@@ -114,6 +114,16 @@ body {
 }
 
 #explore-icon {
+    width: 45px;
+    height: 45px;
+}
+
+#map-icon {
+    width: 50px;
+    height: 50px;
+}
+
+#info-icon {
     width: 40px;
     height: 40px;
 }
@@ -123,14 +133,11 @@ body {
     height: 40px;
 }
 
-#map-link {
-    color: #ffffff;
-    z-index: 1;
+#walking-icon {
+    width: 40px;
+    height: 40px;
 }
-#about-link {
-    color: #ffffff;
-    z-index: 1;
-}
+
 #right-menu {
     color: #ffffff;
     z-index: 1;
