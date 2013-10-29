@@ -39,15 +39,15 @@ body {
     height: 100%;
     background-image: url('../img/bg.jpg');
     margin: 0 auto;
+/*
     background-size: 100%;
+*/
 }
 
 #wrap {
-    min-height: 30%;
 }
 
 #main {
-    padding-bottom: 150px;
 }
 
 .container {
