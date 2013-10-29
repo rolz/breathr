@@ -25,34 +25,10 @@
         <nav class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
                 <a class="navbar-brand" href="">
                     <img id="logo" src="img/logo_white.png" />
                 </a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a id="map-link" href="map.html">Map</a>
-                    </li>
-                    <li>
-                        <a id="about-link" href="#about">About</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a id="right-menu" href="#right-menu" style="display:none">Directions</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
         </nav>
 
         <!--Main-->
@@ -61,39 +37,59 @@
 
             <div id="main" style="display:none">
                 <div class="row">
-                    <div class="col-xs-6 col-md-6">
-                        <div id="weather-box">
-                            <div id="temp-box">
-                                <span id="weathericon">
-                                    <img data-bind="attr:{ src: weatherIcon }" />
-                                </span>
-                                <span id="weather" data-bind="text: temp"></span>
-                            </div>
-                            <div id="marine-box">
-                                <img id="marineicon" data-bind="attr:{ src: marineIcon }" />
-                                <span id="marine" data-bind="text: marineTemp"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6 col-md-6">
+                    <div class="col-xs-12 col-md-12">
                         <div class="row">
                             <div class="col-xs-12 col-md-12">
-                                <button type="button" id="get-closest" class="btn-custom btn-default">
-                                    <img id="closest-icon" data-bind="attr:{ src: closest }"/>
+                                <div id="temp-box">
+                                    <span id="weathericon">
+                                        <img data-bind="attr:{src: weatherIcon }" />
+                                    </span>
+                                    <span id="weather" data-bind="text: temp"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <div id="marine-box">
+                                    <img id="marineicon" data-bind="attr:{ src: marineIcon }" />
+                                    <span id="marine" data-bind="text: marineTemp"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <button type="button" id="get-closest" class="btn-custom-right btn-default">
+                                    <img id="closest-icon" data-bind="attr:{ src: closest }" />
+                                </button>
+                                <button type="button" id="right-menu" class="btn-custom-right btn-default" style="display:none" href="#right-menu">
+                                    <img id="walking-icon" data-bind="attr:{ src: walking}" />
                                 </button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-md-12">
-                                <button type="button" id="get-random" class="btn-custom btn-default">
-                                    <img id="explore-icon" data-bind="attr:{ src: explore}"/>
+                                <button type="button" id="get-random" class="btn-custom-right btn-default">
+                                    <img id="explore-icon" data-bind="attr:{ src: explore}" />
+                                </button>
+                                <button type="button" id="more-random" class="btn-custom-right btn-default" style="display:none">
+                                    <img id="more-icon" data-bind="attr:{ src: more}" />
                                 </button>
                             </div>
                         </div>
-                        <button type="button" id="more-random" class="btn-custom btn-default" style="display:none">
-                            <img id="more-icon" data-bind="attr:{ src: more}"/>
-                        </button>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <button type="button" id="get-map" class="btn-custom-right btn-default" onclick="location.href='map.html';">
+                                    <img id="map-icon" data-bind="attr:{ src: map}" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12">
+                                <button type="button" id="info" class="btn-custom-right btn-default">
+                                    <img id="info-icon" data-bind="attr:{ src: info }" />
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -124,9 +120,11 @@
         <!---Footer-->
 
 
+        <!--
         <nav class="navbar-footer navbar-default navbar-fixed-bottom" role="navigation">
             Made at Hyper Island by Barni, Tracy and Zac
         </nav>
+-->
 
 
     </div>
