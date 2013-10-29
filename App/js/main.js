@@ -11,7 +11,7 @@ var _destinationSet = [];
 $("#main").fadeIn(600);
 
 // get distances between origin and destinations    
-function getDistances(destinationCoords, destinationImage) {
+function getDistances(destinationCoords, destinationImage, destinationDescription) {
 
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix({
@@ -46,7 +46,8 @@ function getDistances(destinationCoords, destinationImage) {
                         to: to,
                         originCoords: originPosition,
                         destinationCoords: destinationCoords,
-                        destinationImage: destinationImage
+                        destinationImage: destinationImage,
+                        destinationDescription: destinationDescription
                     };
 
                     _destinationSet.push(proximityData);
@@ -86,10 +87,12 @@ function getClosest(destinationSet) {
     //fade this in:
     $("#destination-content").fadeOut(function () {
 
-        $("#user-location").html("You are currently at " + closestDestination.from + "!");
+//        $("#user-location").html("You are currently at " + closestDestination.from + "!");
 
-        $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
+//        $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
+        $("#closest").html(closestDestination.destinationDescription);
 
+        
         buttonsControl();
 
         $("#destination-content").fadeIn(600);
@@ -121,9 +124,11 @@ function showDestination(index) {
     $("#destination-content").fadeOut(function () {
         //code for going to random view in html
 
-        $("#user-location").html("You are currently at " + destination.from + "!");
+//        $("#user-location").html("You are currently at " + destination.from + "!");
 
-        $("#random").html("But maybe you want an adventure, so go explore " + destination.to + " it will only take you " + destination.duration + "!");
+//        $("#random").html("But maybe you want an adventure, so go explore " + destination.to + " it will only take you " + destination.duration + "!");
+        
+        $("#random").html(destination.destinationDescription);
 
         buttonsControl();
 
@@ -200,17 +205,18 @@ $('#right-menu').sidr({
 
 
 // get destinations data    
-function getDestinationsCoords(destinationCoordsData) {
+function getDestinationsAll(destinationCoordsData) {
 
     for (i = 0; i < destinationCoordsData.rows.length; i++) {
         var raw = destinationCoordsData.rows[i];
         //getting google maps json, this has lat and lng
+        var destinationDescription = raw[5];
         var destinationMedia = raw[7];
         var destinationCoords = new google.maps.LatLng(raw[3], raw[4]);
 
         // this is coords data of destinations
         // 4th callback to get distance function
-        getDistances(destinationCoords, destinationMedia);
+        getDistances(destinationCoords, destinationMedia, destinationDescription);
     }
 }
 
@@ -228,7 +234,7 @@ function getDestinationsData() {
     console.log(url);
 
     // 3rd callback
-    $.getJSON(url, getDestinationsCoords);
+    $.getJSON(url, getDestinationsAll);
 }
 
 
@@ -246,6 +252,7 @@ function geoLoc(p) {
 
 function geoError() {
     console.log("Could not find you!");
+    alert("Can't Find You!")
 }
 
 function get_location() {

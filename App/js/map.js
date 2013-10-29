@@ -1,12 +1,36 @@
 var map = L.mapbox.map('map', 'barnaszasz.map-5d7s1o82');
 
-var distancesLeftToCalculate = 0;
+map.locate({setView: true, maxZoom: 13});
 
-var userIcon = L.icon({
-    iconUrl: 'img/user_icon.png',
-    iconSize: [33, 49],
-    iconAnchor: [33, 49]
-});
+function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+    
+    var userIcon = L.icon({
+        iconUrl: 'img/user_icon.png',
+        iconSize: [33, 49],
+        iconAnchor: [33, 49]
+    });
+
+    var userMarker = L.marker(e.latlng, {
+        icon: userIcon,
+        draggable: true
+    }); 
+        
+    L.circle(e.latlng, radius).addTo(map);
+    
+    userMarker.addTo(map);
+    userMarker.bindPopup("You are within " + radius + " meters from this point").openPopup();
+}
+
+map.on('locationfound', onLocationFound);
+
+function onLocationError(e) {
+    alert(e.message);
+}
+
+map.on('locationerror', onLocationError);
+
+var distancesLeftToCalculate = 0;
 
 var destIcon = L.icon({
     iconUrl: 'img/dest_icon.png',
@@ -14,13 +38,6 @@ var destIcon = L.icon({
     iconAnchor: [20, 49]
 });
 
-var userMarker = L.marker(new L.LatLng(59.32375406716411, 18.075084686279297), {
-    icon: userIcon,
-    draggable: true
-});
-
-userMarker.bindPopup('Drag marker to find 5 closest views.');
-userMarker.addTo(map);
 
 // user marker get coords on drag end
 userMarker.on('dragend', function (event) {
