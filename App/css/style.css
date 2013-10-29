@@ -64,6 +64,8 @@ body {
 }
 .p {
     color: #ffffff;
+    font-family: wire one;
+    font-size: 25px;
 }
 
 .btn-custom-left {
