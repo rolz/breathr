@@ -14,7 +14,9 @@
 .weather-info {
     float:left;
 }
-
+.navbar-toggle {
+    z-index: 1;
+}
 .navbar-brand {
     height: 50px;
     overflow: visible;
@@ -26,6 +28,7 @@
     left: 0;
     text-align: center;
     margin: auto; 
+    z-index: 0;
 }
 
 .navbar .navbar-brand img{

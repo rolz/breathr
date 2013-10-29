@@ -8,7 +8,7 @@ var originPosition = null;
 var _destinationSet = [];
 
 // main page fade in
-$("#main").fadeIn(800);
+$("#main").fadeIn(600);
 
 // get distances between origin and destinations    
 function getDistances(destinationCoords, destinationImage) {
@@ -60,7 +60,7 @@ function getDistances(destinationCoords, destinationImage) {
 function getClosest(destinationSet) {
 
     history.pushState({}, "", "");
-
+    console.log(destinationSet.data);
     //full destination data set
     var index = 0;
     var value = destinationSet.data[0].timeValue;
@@ -84,7 +84,7 @@ function getClosest(destinationSet) {
     //code for going to closest view in html
 
     //fade this in:
-    $("#main").fadeOut(function () {
+    $("#destination-content").fadeOut(function () {
 
         $("#user-location").html("You are currently at " + closestDestination.from + "!");
 
@@ -92,7 +92,7 @@ function getClosest(destinationSet) {
 
         buttonsControl();
 
-        $("#main").fadeIn(800);
+        $("#destination-content").fadeIn(600);
 
     });
 
@@ -106,8 +106,6 @@ function randomizeDestinations(destinationSet) {
     getNextDestination();
 }
 
-
-
 var currentDestinationIndex = 0;
 
 
@@ -120,7 +118,7 @@ function showDestination(index) {
     //get directions
     calcDirections(destination.destinationCoords);
 
-    $("#main").fadeOut(function () {
+    $("#destination-content").fadeOut(function () {
         //code for going to random view in html
 
         $("#user-location").html("You are currently at " + destination.from + "!");
@@ -131,7 +129,7 @@ function showDestination(index) {
 
         $("#more-random").show();
 
-        $("#main").fadeIn(800);
+        $("#destination-content").fadeIn(800);
 
     });
 
@@ -157,9 +155,12 @@ function getNextDestination() {
 function getBg(imgDestination) {
 
     var imgUrl = imgDestination;
-
+    
     // fade this in:
-    $('#img-container').css("background", 'url(' + imgUrl + ')');
+    $('#img-container').css({
+        'background': 'url(' + imgUrl + ')',
+        'backgroundSize': '100%' 
+    });
 
 }
 
@@ -204,8 +205,8 @@ function getDestinationsCoords(destinationCoordsData) {
     for (i = 0; i < destinationCoordsData.rows.length; i++) {
         var raw = destinationCoordsData.rows[i];
         //getting google maps json, this has lat and lng
-        var destinationMedia = raw[6];
-        var destinationCoords = new google.maps.LatLng(raw[2], raw[3]);
+        var destinationMedia = raw[7];
+        var destinationCoords = new google.maps.LatLng(raw[3], raw[4]);
 
         // this is coords data of destinations
         // 4th callback to get distance function
@@ -223,6 +224,8 @@ function getDestinationsData() {
     var fusionKey = "&key=AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM";
 
     var url = fusionUrl + allDataQuery + fusionTableId + fusionKey;
+
+    console.log(url);
 
     // 3rd callback
     $.getJSON(url, getDestinationsCoords);
@@ -256,81 +259,42 @@ function get_location() {
 // 1st start call function
 get_location();
 
-//get weather data 
+//Weather
+function StartViewModel() {
+    // Data
+    var self = this;
+    self.temp = ko.observable();
+    self.marineTemp = ko.observable();
+    self.weatherIcon = ko.observable();
+    self.marineIcon = "img/waves.png";
+    self.closest = "img/closest.png";
+    self.explore = "img/explore.png";
+    self.more = "img/more.png";
+    
+    var celcius = String.fromCharCode(176) + "C";
 
-//temperature data
-function getWeatherData(api) {
+    var weatherApi = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=Stockholm&format=json&num_of_days=1&callback=?&key=86pdf5p7sa34xzrgbenmtjnb";
+    var marineApi = "http://api.worldweatheronline.com/free/v1/marine.ashx?q=59.329,18.06511&format=json&Callback=?&key=f932x2a5kct424atxm6ned9z";
 
-    //http://api.worldweatheronline.com/free/v1/weather.ashx?q=stockholm&format=json&num_of_days=1&callback=?&key=86pdf5p7sa34xzrgbenmtjnb
+    var data = $.getJSON(weatherApi, function (allData) {
+        var t = allData.data.current_condition[0].temp_C + celcius;
+        var wC = allData.data.current_condition[0].weatherCode;
+        var climacon = "img/climacons/" + wC + ".png";
+        self.weatherIcon(climacon);
+        self.temp(t);
+    });
 
-    var key = "86pdf5p7sa34xzrgbenmtjnb";
-    var url = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=";
-    var city = "Stockholm";
-    var numDays = 1;
-    var amazingCallback = "?"
-    //	var coords = "";
-    var format = "json";
-
-    var fullQueryUrl = url + city + "&format=" + format + "&num_of_days=" + numDays + "&callback=" + amazingCallback + "&key=" + key;
-
-    $.getJSON(fullQueryUrl, getTemperatureInfo);
+    var mData = $.getJSON(marineApi, function (allData) {
+        var mT = allData.data.weather[0].hourly[0].waterTemp_C + celcius;
+        self.marineTemp(mT);
+    });
 };
-
-function getTemperatureInfo(weatherData) {
-    var currentTemperature = weatherData.data.current_condition[0].temp_C;
-    var city = weatherData.data.request[0].query;
-    var celsius = String.fromCharCode(176) + "C";
-    var weatherDesc = weatherData.data.current_condition[0].weatherDesc[0].value;
-    var weatherCode = weatherData.data.current_condition[0].weatherCode;
-
-    //temperature+weather
-    $('#weather').html(weatherDesc + " " + currentTemperature + celsius);
-
-    var climacon = "img/climacons/" + weatherCode + ".png"
-
-    //weather icon
-    $("#weathericon").html('<img src="' + climacon + '">');
-
-};
-getWeatherData();
-
-//  weather data callback
-
-
-//Marine weather
-
-function getWaterData(waterApi) {
-    var url = "http://api.worldweatheronline.com/free/v1/marine.ashx?q=";
-    var q = "59.329,18.06511";
-    var format = "json";
-    var apiCallback = "?";
-    var key = "f932x2a5kct424atxm6ned9z";
-
-    var fullQueryUrl = url + q + "&format=" + format + "&Callback=" + apiCallback + "&key=" + key;
-
-    $.getJSON(fullQueryUrl, getWaterTemp);
-
-};
-
-function getWaterTemp(waterTemp) {
-    var waterTemperature = waterTemp.data.weather[0].hourly[0].waterTemp_C;
-
-    var q = waterTemp.data.request[0].query;
-    var celsius = String.fromCharCode(176) + "C";
-
-    $('#marine').html(waterTemperature + celsius);
-
-};
-getWaterData();
-
-
-
+ko.applyBindings(new StartViewModel()); //binds weather data
 
 //show and hide buttons
 function buttonsControl() {
     $('#get-closest').hide();
     $('#get-random').hide();
-    $('#back').show();
     $('#right-menu').show();
 }
 
@@ -352,15 +316,16 @@ $('#more-random').click(_destinationSet, getNextDestination);
 //    $('#map-link').click(map);
 
 function about() {
-    $('#main').hide();
+    $('#content').hide();
     $('#about').show();
 }
 
 $('#about-link').click(about);
 
-//    $("#back").click(function() {
+// use it when you can control the explore views with it...everything in the browser!
+//$("#back").click(function() {
 //        window.location.reload()
-//    });
+//}); 
 
 window.addEventListener('load', function () {
     setTimeout(function () {
