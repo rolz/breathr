@@ -128,7 +128,6 @@ function drag(userMarker) {
             var url = fusionUrl + allDataQuery + fusionTableId + fusionKey;
 
             $.getJSON(url, getDestinationsCoords);
-            console.log(url);
         }
 
         getDestinationsData();
@@ -152,7 +151,6 @@ function getClosest(destinationSet) {
 
     var closestDestination = destinationSet[index];
     //closest destination data set
-    console.log("this is closest ", closestDestination);
 
     createDestinationMarkers(closestDestination);
 
@@ -171,9 +169,8 @@ function createDestinationMarkers(properties) {
     var marker = L.marker([properties.destinationCoords.lb, properties.destinationCoords.mb], {
         icon: destIcon,
         zIndexOffset: 1
-    }).addTo(map).bindPopup("Click Here!").openPopup().on('click', function clickDestination() {
+    }).addTo(map).bindPopup("<b>Click here to see the view!</b>").openPopup().on('click', function clickDestination() {
 
-        console.log(properties.destinationMedia);
         getBg(properties.destinationMedia);
     });
 
@@ -183,7 +180,6 @@ function createDestinationMarkers(properties) {
 function getBg(imgDestination) {
 
     var imgUrl = imgDestination;
-    console.log("two " + imgUrl);
 
     // fade this in:
     $('#img-container').css({
@@ -236,6 +232,8 @@ function StartViewModel() {
     self.weatherIcon = ko.observable();
     self.marineIcon = "img/waves.png";
     self.walking = "img/walking_path.png";
+    self.map = "img/map.png";
+    self.close ="img/close.png";
 
     var celcius = String.fromCharCode(176) + "C";
 
@@ -256,3 +254,14 @@ function StartViewModel() {
     });
 }
 ko.applyBindings(new StartViewModel()); //key elements
+
+$('#close-img').click(function(){
+    $('#img-container').hide();
+});
+
+$('#close-map').click(function(){
+    window.location = 'index.html';
+});
+
+
+

@@ -24,15 +24,31 @@
 
     <!--logo-->
 
-    <!--    <img id="logo" src="img/logo_white.png" />-->
+
 
 
     <!--content-->
     <div id="map"></div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <img id="close-map" data-bind="attr:{src: close }"/>
+            </div>
+        </div>
 
-    <div id="img-container" style="display:none"></div>
+    <div id="img-container" style="display:none">
     <div id="wrap">
         <div id="main">
+            <!--logo-->
+            <div class="row">
+                <div class="col-xs-10 col-md-10">
+                    <a class="logo" href="index.html">
+                        <img id="logo" src="img/logo_white.png" />
+                    </a>
+                </div>
+                <div class="col-xs-2 col-md-2">
+                        <img id="close-img" data-bind="attr:{src: close }"/>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-xs-12 col-md-12">
                     <div id="temp-box">
@@ -56,10 +72,17 @@
                     <button type="button" id="right-menu" class="btn-custom-right btn-default" href="#right-menu">
                         <img id="walking-icon" data-bind="attr:{ src: walking}" />
                     </button>
-
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <button type="button" id="get-map" class="btn-custom-right btn-default" onclick="location.href='map.html';">
+                        <img id="map-icon" data-bind="attr:{src: map}"/>
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 

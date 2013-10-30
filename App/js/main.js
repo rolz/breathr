@@ -61,7 +61,7 @@ function getDistances(destinationCoords, destinationImage, destinationDescriptio
 function getClosest(destinationSet) {
 
     history.pushState({}, "", "");
-    console.log(destinationSet.data);
+
     //full destination data set
     var index = 0;
     var value = destinationSet.data[0].timeValue;
@@ -231,8 +231,6 @@ function getDestinationsData() {
 
     var url = fusionUrl + allDataQuery + fusionTableId + fusionKey;
 
-    console.log(url);
-
     // 3rd callback
     $.getJSON(url, getDestinationsAll);
 }
@@ -280,6 +278,7 @@ function StartViewModel() {
     self.info = "img/info.png";
     self.more = "img/more.png";
     self.walking = "img/walking_path.png";
+    self.close = "img/close.png";
     
     var celcius = String.fromCharCode(176) + "C";
 
@@ -306,6 +305,7 @@ function buttonsControl() {
     $('#get-closest').hide();
     $('#get-random').hide();
     $('#right-menu').show();
+    $('#close').show();
 }
 
 
@@ -318,6 +318,11 @@ $('#get-random').click(_destinationSet, randomizeDestinations);
 //cycle through random destination
 $('#more-random').click(_destinationSet, getNextDestination);
 
+$('#close').click(function(){
+    window.location = 'index.html';
+});
+
+
 //    function map(){
 //        $('#image-container').hide();
 //        $('#map').show();
@@ -325,12 +330,12 @@ $('#more-random').click(_destinationSet, getNextDestination);
 //    
 //    $('#map-link').click(map);
 
-function about() {
+$('#info').click(function() {
     $('#content').hide();
     $('#about').show();
-}
+    $('#close').show();
+})
 
-$('#info').click(about);
 
 // use it when you can control the explore views with it...everything in the browser!
 //$("#back").click(function() {
