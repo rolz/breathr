@@ -90,7 +90,7 @@ function getClosest(destinationSet) {
 //        $("#user-location").html("You are currently at " + closestDestination.from + "!");
 
 //        $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
-        $("#closest").html(closestDestination.destinationDescription);
+        $("#text").html(closestDestination.destinationDescription);
 
         
         buttonsControl();
@@ -128,7 +128,7 @@ function showDestination(index) {
 
 //        $("#random").html("But maybe you want an adventure, so go explore " + destination.to + " it will only take you " + destination.duration + "!");
         
-        $("#random").html(destination.destinationDescription);
+        $("#text").html(destination.destinationDescription);
 
         buttonsControl();
 
@@ -201,7 +201,10 @@ function calcDirections(directionsCoords) {
 $('#right-menu').sidr({
     name: 'sidr-right',
     side: 'right'
+}, function(){
+    $('#info-slider').hide();
 });
+
 
 
 // get destinations data    
@@ -306,7 +309,8 @@ function buttonsControl() {
     $('#get-random').hide();
     $('#right-menu').show();
     $('#close').show();
-    $('#infotext').hide();
+    $('#contact').hide();
+    $('#info').hide();
 }
 
 
@@ -323,26 +327,6 @@ $('#close').click(function(){
     window.location = 'index.html';
 });
 
-
-//    function map(){
-//        $('#image-container').hide();
-//        $('#map').show();
-//    };
-//    
-//    $('#map-link').click(map);
-
-$('#info').click(function() {
-    $('#content').hide();
-    $('#infotext').show();
-    $('#close').show();
-})
-
-
-// use it when you can control the explore views with it...everything in the browser!
-//$("#back").click(function() {
-//        window.location.reload()
-//}); 
-
 window.addEventListener('load', function () {
     setTimeout(function () {
         window.addEventListener('popstate', function (event) {
@@ -354,6 +338,26 @@ window.addEventListener('load', function () {
         });
     }, 0);
 });
+
+// INFO-SLIDER
+        var menuShowing = false;
+        $('#info').click(function(){
+                var winW = $(window).width(),
+                        slideL = winW - 1018;
+                if (!menuShowing) {
+                        menuShowing = true;
+                        $('#img-container').animate({
+                                marginLeft: slideL + 'px'
+                        }, 400);
+                } else if (menuShowing) {
+                        $('#img-container').animate({
+                                marginLeft: '0px'
+                        }, 400);
+                        menuShowing = false;
+                }
+        });
+
+
 
 
 // my key: AIzaSyA8z1sLokJyNX3IX58jbSic-coCPpkKifM
