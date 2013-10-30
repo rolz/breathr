@@ -16,6 +16,7 @@ body {
     float: right;
 }
 
+
 #info-slider {
         position: fixed;
         top: -60px;
@@ -229,7 +230,7 @@ p {
 
 #info-row{
     position:fixed;
-    left: 1430px;
+    left: 1340px;
     top:65.3%;
 }
 
