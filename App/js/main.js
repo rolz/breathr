@@ -306,6 +306,7 @@ function buttonsControl() {
     $('#get-random').hide();
     $('#right-menu').show();
     $('#close').show();
+    $('#infotext').hide();
 }
 
 
@@ -332,7 +333,7 @@ $('#close').click(function(){
 
 $('#info').click(function() {
     $('#content').hide();
-    $('#about').show();
+    $('#infotext').show();
     $('#close').show();
 })
 

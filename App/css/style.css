@@ -195,11 +195,16 @@ body {
     color: #ffffff;
     z-index: 1;
 }
-.navbar-footer {
-    height: 40px;
-    color: #ffffff;
+
+#infotext
+{
+    position: relative;
+    margin-right: 150px;
+    margin-bottom: 200px;
+    margin-left: 150px;
     text-align: center;
 }
+
 .clearfix {
     clear: both;
 }
