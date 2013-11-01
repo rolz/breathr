@@ -310,7 +310,6 @@ function buttonsControl() {
     $('#right-menu').show();
     $('#close').show();
     $('#contact').hide();
-    $('#info').hide();
 }
 
 
@@ -348,11 +347,11 @@ window.addEventListener('load', function () {
                         menuShowing = true;
                         $('#img-container').animate({
                                 marginLeft: slideL + 'px'
-                        }, 400);
+                        });
                 } else if (menuShowing) {
                         $('#img-container').animate({
                                 marginLeft: '0px'
-                        }, 400);
+                        });
                         menuShowing = false;
                 }
         });
