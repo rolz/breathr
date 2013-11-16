@@ -133,7 +133,7 @@ function drag(userMarker) {
         getDestinationsData();
 
 
-    })
+    });
 }
 
 //return closest destination **** find way to connect getDistances
@@ -262,6 +262,5 @@ $('#close-img').click(function(){
 $('#close-map').click(function(){
     window.location = 'index.html';
 });
-
 
 

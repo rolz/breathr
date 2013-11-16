@@ -1,5 +1,4 @@
 
-
 var originPosition = null;
 var _destinationSet = [];
 
