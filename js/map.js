@@ -113,6 +113,8 @@ function drag(userMarker) {
                 var destinationCoords = new google.maps.LatLng(raw[3], raw[4]);
                 var destinationMedia = raw[7];
 
+                console.log(destinationCoords);
+
                 getDistances(destinationCoords, destinationMedia);
             }
         }
@@ -149,6 +151,7 @@ function getClosest(destinationSet) {
         }
     }
 
+    console.log("cd"+destinationSet[index]);
     var closestDestination = destinationSet[index];
     //closest destination data set
 
@@ -166,7 +169,7 @@ var destIcon = L.icon({
 
 //create destination markers
 function createDestinationMarkers(properties) {
-    var marker = L.marker([properties.destinationCoords.lb, properties.destinationCoords.mb], {
+    var marker = L.marker([properties.destinationCoords.ob, properties.destinationCoords.pb], {
         icon: destIcon,
         zIndexOffset: 1
     }).addTo(map).bindPopup("<b>Click here to see the view!</b>").openPopup().on('click', function clickDestination() {
