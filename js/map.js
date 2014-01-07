@@ -169,7 +169,7 @@ var destIcon = L.icon({
 
 //create destination markers
 function createDestinationMarkers(properties) {
-    var marker = L.marker([properties.destinationCoords.ob, properties.destinationCoords.pb], {
+    var marker = L.marker([properties.destinationCoords.nb, properties.destinationCoords.ob], {
         icon: destIcon,
         zIndexOffset: 1
     }).addTo(map).bindPopup("<b>Click here to see the view!</b>").openPopup().on('click', function clickDestination() {
