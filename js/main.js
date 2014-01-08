@@ -242,7 +242,7 @@ function geoLoc(p) {
     // make sure its arguments and not a string
     originPosition = new google.maps.LatLng(originLat, originLng);
 
-    //3rd callback
+    //2rd callback
     getDestinationsData();
 }
 

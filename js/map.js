@@ -152,6 +152,8 @@ function getClosest(destinationSet) {
     var closestDestination = destinationSet[index];
     //closest destination data set
 
+    console.log(closestDestination);
+
     createDestinationMarkers(closestDestination);
 
 }
@@ -166,7 +168,7 @@ var destIcon = L.icon({
 
 //create destination markers
 function createDestinationMarkers(properties) {
-    var marker = L.marker([properties.destinationCoords.ob, properties.destinationCoords.pb], {
+    var marker = L.marker([properties.destinationCoords.b, properties.destinationCoords.d], {
         icon: destIcon,
         zIndexOffset: 1
     }).addTo(map).bindPopup("<b>Click here to see the view!</b>").openPopup().on('click', function clickDestination() {
