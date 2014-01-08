@@ -171,7 +171,6 @@ var destIcon = L.icon({
 
 //create destination markers
 function createDestinationMarkers(properties) {
-
     var marker = L.marker([properties.destinationCoords.b, properties.destinationCoords.d], {
         icon: destIcon,
         zIndexOffset: 1
