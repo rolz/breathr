@@ -1,16 +1,10 @@
-/*global $, jQuery*/
-/*jslint browser: true, closure: true, sloppy: true, vars: true, white: true */
-
-// not using doc ready: $(document).ready(function () {
-
-
 var originPosition = null;
 var _destinationSet = [];
 
 // main page fade in
 $("#main").fadeIn(600);
 
-// get distances between origin and destinations    
+// get distances between origin and destinations
 function getDistances(destinationCoords, destinationImage, destinationDescription) {
 
     var service = new google.maps.DistanceMatrixService();
@@ -85,14 +79,14 @@ function getClosest(destinationSet) {
     //code for going to closest view in html
 
     //fade this in:
-    $("#destination-content").fadeOut(function () {
+    $("#destination-content").fadeOut(function() {
 
-//        $("#user-location").html("You are currently at " + closestDestination.from + "!");
+        //        $("#user-location").html("You are currently at " + closestDestination.from + "!");
 
-//        $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
+        //        $("#closest").html("It should not take more than " + closestDestination.duration + " to get to " + closestDestination.to + "!");
         $("#text").html(closestDestination.destinationDescription);
 
-        
+
         buttonsControl();
 
         $("#destination-content").fadeIn(600);
@@ -121,13 +115,13 @@ function showDestination(index) {
     //get directions
     calcDirections(destination.destinationCoords);
 
-    $("#destination-content").fadeOut(function () {
+    $("#destination-content").fadeOut(function() {
         //code for going to random view in html
 
-//        $("#user-location").html("You are currently at " + destination.from + "!");
+        //        $("#user-location").html("You are currently at " + destination.from + "!");
 
-//        $("#random").html("But maybe you want an adventure, so go explore " + destination.to + " it will only take you " + destination.duration + "!");
-        
+        //        $("#random").html("But maybe you want an adventure, so go explore " + destination.to + " it will only take you " + destination.duration + "!");
+
         $("#text").html(destination.destinationDescription);
 
         buttonsControl();
@@ -160,11 +154,11 @@ function getNextDestination() {
 function getBg(imgDestination) {
 
     var imgUrl = imgDestination;
-    
+
     // fade this in:
     $('#img-container').css({
         'background': 'url(' + imgUrl + ')',
-        'backgroundSize': '100%' 
+        'backgroundSize': '100%'
     });
 
 }
@@ -189,7 +183,7 @@ function calcDirections(directionsCoords) {
         destination: end,
         travelMode: google.maps.TravelMode.WALKING
     };
-    directionsService.route(request, function (response, status) {
+    directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
         }
@@ -201,13 +195,13 @@ function calcDirections(directionsCoords) {
 $('#right-menu').sidr({
     name: 'sidr-right',
     side: 'right'
-}, function(){
+}, function() {
     $('#info-slider').hide();
 });
 
 
 
-// get destinations data    
+// get destinations data
 function getDestinationsAll(destinationCoordsData) {
 
     for (i = 0; i < destinationCoordsData.rows.length; i++) {
@@ -239,7 +233,7 @@ function getDestinationsData() {
 }
 
 
-// get origin location   
+// get origin location
 function geoLoc(p) {
     var originLat = p.coords.latitude;
     var originLng = p.coords.longitude;
@@ -247,7 +241,7 @@ function geoLoc(p) {
     // make sure its arguments and not a string
     originPosition = new google.maps.LatLng(originLat, originLng);
 
-    //3rd callback
+    //2rd callback
     getDestinationsData();
 }
 
@@ -282,13 +276,13 @@ function StartViewModel() {
     self.more = "img/more.png";
     self.walking = "img/walking_path.png";
     self.close = "img/close.png";
-    
+
     var celcius = String.fromCharCode(176) + "C";
 
     var weatherApi = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=Stockholm&format=json&num_of_days=1&callback=?&key=86pdf5p7sa34xzrgbenmtjnb";
     var marineApi = "http://api.worldweatheronline.com/free/v1/marine.ashx?q=59.329,18.06511&format=json&Callback=?&key=f932x2a5kct424atxm6ned9z";
 
-    var data = $.getJSON(weatherApi, function (allData) {
+    var data = $.getJSON(weatherApi, function(allData) {
         var t = allData.data.current_condition[0].temp_C + celcius;
         var wC = allData.data.current_condition[0].weatherCode;
         var climacon = "img/climacons/" + wC + ".png";
@@ -296,7 +290,7 @@ function StartViewModel() {
         self.temp(t);
     });
 
-    var mData = $.getJSON(marineApi, function (allData) {
+    var mData = $.getJSON(marineApi, function(allData) {
         var mT = allData.data.weather[0].hourly[0].waterTemp_C + celcius;
         self.marineTemp(mT);
     });
@@ -322,13 +316,13 @@ $('#get-random').click(_destinationSet, randomizeDestinations);
 //cycle through random destination
 $('#more-random').click(_destinationSet, getNextDestination);
 
-$('#close').click(function(){
+$('#close').click(function() {
     window.location = 'index.html';
 });
 
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        window.addEventListener('popstate', function (event) {
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        window.addEventListener('popstate', function(event) {
             if (event.state.index) {
                 showDestination(event.state.index);
             } else {
@@ -339,21 +333,19 @@ window.addEventListener('load', function () {
 });
 
 // INFO-SLIDER
-        var menuShowing = false;
-        $('#info').click(function(){
-                var winW = $(window).width(),
-                        slideL = winW - 1018;
-                if (!menuShowing) {
-                        menuShowing = true;
-                        $('#img-container').animate({
-                                marginLeft: slideL + 'px'
-                        });
-                } else if (menuShowing) {
-                        $('#img-container').animate({
-                                marginLeft: '0px'
-                        });
-                        menuShowing = false;
-                }
+var menuShowing = false;
+$('#info').click(function() {
+    var winW = $(window).width(),
+        slideL = winW - 1018;
+    if (!menuShowing) {
+        menuShowing = true;
+        $('#img-container').animate({
+            marginLeft: slideL + 'px'
         });
-
-
+    } else if (menuShowing) {
+        $('#img-container').animate({
+            marginLeft: '0px'
+        });
+        menuShowing = false;
+    }
+});

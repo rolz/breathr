@@ -45,7 +45,7 @@ var distancesLeftToCalculate = 0;
 
 function drag(userMarker) {
     // user marker get coords on drag end
-    userMarker.on('dragend', function (event) {
+    userMarker.on('dragend', function(event) {
 
         var userMarkerLoc = userMarker.getLatLng(); // but using the passed event is cleaner
         var userMarkerTransform = ('fuck' + userMarkerLoc);
@@ -135,7 +135,7 @@ function drag(userMarker) {
         getDestinationsData();
 
 
-    })
+    });
 }
 
 //return closest destination **** find way to connect getDistances
@@ -151,9 +151,11 @@ function getClosest(destinationSet) {
         }
     }
 
-    console.log("cd"+destinationSet[index]);
+    console.log("cd" + destinationSet[index]);
     var closestDestination = destinationSet[index];
     //closest destination data set
+
+    console.log(closestDestination);
 
     createDestinationMarkers(closestDestination);
 
@@ -169,7 +171,8 @@ var destIcon = L.icon({
 
 //create destination markers
 function createDestinationMarkers(properties) {
-    var marker = L.marker([properties.destinationCoords.ob, properties.destinationCoords.pb], {
+
+    var marker = L.marker([properties.destinationCoords.b, properties.destinationCoords.d], {
         icon: destIcon,
         zIndexOffset: 1
     }).addTo(map).bindPopup("<b>Click here to see the view!</b>").openPopup().on('click', function clickDestination() {
@@ -213,7 +216,7 @@ function calcDirections(originCoords, destinationCoords) {
         destination: end,
         travelMode: google.maps.TravelMode.WALKING
     };
-    directionsService.route(request, function (response, status) {
+    directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
         }
@@ -236,14 +239,14 @@ function StartViewModel() {
     self.marineIcon = "img/waves.png";
     self.walking = "img/walking_path.png";
     self.map = "img/map.png";
-    self.close ="img/close.png";
+    self.close = "img/close.png";
 
     var celcius = String.fromCharCode(176) + "C";
 
     var weatherApi = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=Stockholm&format=json&num_of_days=1&callback=?&key=86pdf5p7sa34xzrgbenmtjnb";
     var marineApi = "http://api.worldweatheronline.com/free/v1/marine.ashx?q=59.329,18.06511&format=json&Callback=?&key=f932x2a5kct424atxm6ned9z";
 
-    var data = $.getJSON(weatherApi, function (allData) {
+    var data = $.getJSON(weatherApi, function(allData) {
         var t = allData.data.current_condition[0].temp_C + celcius;
         var wC = allData.data.current_condition[0].weatherCode;
         var climacon = "img/climacons/" + wC + ".png";
@@ -251,20 +254,17 @@ function StartViewModel() {
         self.temp(t);
     });
 
-    var mData = $.getJSON(marineApi, function (allData) {
+    var mData = $.getJSON(marineApi, function(allData) {
         var mT = allData.data.weather[0].hourly[0].waterTemp_C + celcius;
         self.marineTemp(mT);
     });
 }
 ko.applyBindings(new StartViewModel()); //key elements
 
-$('#close-img').click(function(){
+$('#close-img').click(function() {
     $('#img-container').hide();
 });
 
-$('#close-map').click(function(){
+$('#close-map').click(function() {
     window.location = 'index.html';
 });
-
-
-
