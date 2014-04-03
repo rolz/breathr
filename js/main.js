@@ -186,6 +186,8 @@ function calcDirections(directionsCoords) {
     directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+        }else {
+          alert("Sorry, but the google maps api doesn't work transatalntically. To simualate the app install"+"<a href='https://chrome.google.com/webstore/detail/manual-geolocation/mfodligkojepnddfhkbkodbamcagfhlo'>this</a>")
         }
     });
 }
