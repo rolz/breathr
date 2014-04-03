@@ -47,7 +47,7 @@ function getDistances(destinationCoords, destinationImage, destinationDescriptio
                     _destinationSet.push(proximityData);
                 }
             }
-        }else {
+        } if (status == google.maps.DistanceMatrixStatus.ZERO_RESULTS) {
             console.log("Sorry, but the google maps api doesn't work transatalntically.");
         }
     }
