@@ -48,6 +48,8 @@ function getDistances(destinationCoords, destinationImage, destinationDescriptio
                 }
             }
         }
+    } else {
+        alert("Sorry, but the google maps api doesn't work transatalntically. To simualate the app install"+"<a href='https://chrome.google.com/webstore/detail/manual-geolocation/mfodligkojepnddfhkbkodbamcagfhlo'>this</a>");
     }
 }
 
