@@ -242,6 +242,10 @@ function geoLoc(p) {
     var originLat = p.coords.latitude;
     var originLng = p.coords.longitude;
     
+    // stockholm
+    // 59.32932349999999
+    // 18.068580800000063
+    
     console.log(originLat, originLng);
 
     // make sure its arguments and not a string
