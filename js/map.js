@@ -6,6 +6,10 @@ map.locate({
 });
 
 var userMarker;
+var lat = 59.32932349999999;
+var lng = 18.068580800000063;
+
+var newLatLng = new L.LatLng(lat, lng);
 
 function onLocationFound(e) {
     console.log(e.latlng);
@@ -16,7 +20,7 @@ function onLocationFound(e) {
         popupAnchor: [0, -35]
     });
 
-    userMarker = L.marker(e.latlng, {
+    userMarker = L.marker(newLatLng, {
         icon: userIcon,
         draggable: true,
         zIndexOffset: 2
