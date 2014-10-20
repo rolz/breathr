@@ -8,7 +8,7 @@ map.locate({
 var userMarker;
 
 function onLocationFound(e) {
-
+    console.log(e.latlng);
     var userIcon = L.icon({
         iconUrl: 'img/user_icon.png',
         iconSize: [33, 49],
