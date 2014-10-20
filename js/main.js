@@ -241,6 +241,8 @@ function getDestinationsData() {
 function geoLoc(p) {
     var originLat = p.coords.latitude;
     var originLng = p.coords.longitude;
+    
+    console.log(originLat, originLng);
 
     // make sure its arguments and not a string
     originPosition = new google.maps.LatLng(originLat, originLng);
