@@ -12,7 +12,7 @@ var lng = 18.068580800000063;
 var newLatLng = new L.LatLng(lat, lng);
 
 function onLocationFound(e) {
-    console.log(e.latlng);
+//     console.log(e.latlng);
     var userIcon = L.icon({
         iconUrl: 'img/user_icon.png',
         iconSize: [33, 49],
@@ -36,13 +36,13 @@ function onLocationFound(e) {
 }
 
 
-map.on('locationfound', onLocationFound);
+map.on('ready', onLocationFound);
 
 function onLocationError(e) {
     alert(e.message);
 }
 
-map.on('locationerror', onLocationError);
+map.on('error', onLocationError);
 
 
 var distancesLeftToCalculate = 0;
