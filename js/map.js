@@ -36,13 +36,13 @@ function onLocationFound(e) {
 }
 
 
-map.on('ready', onLocationFound);
+map.on('locationFound', onLocationFound);
 
 function onLocationError(e) {
     alert(e.message);
 }
 
-map.on('error', onLocationError);
+map.on('locationFoundError', onLocationError);
 
 
 var distancesLeftToCalculate = 0;
