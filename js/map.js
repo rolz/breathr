@@ -6,8 +6,8 @@ map.locate({
 });
 
 var userMarker;
-var lat = 59.32932349999999;
-var lng = 18.068580800000063;
+var lat = 59.325;
+var lng = 18.07;
 
 var newLatLng = new L.LatLng(lat, lng);
 
