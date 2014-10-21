@@ -28,7 +28,10 @@ var newLatLng = new L.LatLng(lat, lng);
 
     //    L.circle(e.latlng, radius).addTo(map);
 
-    userMarker.addTo(map).bindPopup("<b>You are here!</b><br>Drag the market to find closest spot</br>").openPopup();
+    userMarker.addTo(map);
+    
+    map.on('ready',  userMarker.bindPopup("<b>You are here!</b><br>Drag the market to find closest spot</br>").openPopup(););
+    // userMarker.bindPopup("<b>You are here!</b><br>Drag the market to find closest spot</br>").openPopup();
 
     drag(userMarker);
 
