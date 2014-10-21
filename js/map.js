@@ -30,7 +30,7 @@ var newLatLng = new L.LatLng(lat, lng);
 
     userMarker.addTo(map);
     
-    map.on('ready',  userMarker.bindPopup("<b>You are here!</b><br>Drag the market to find closest spot</br>").openPopup(););
+    map.on('ready',  userMarker.bindPopup("<b>You are here!</b><br>Drag the market to find closest spot</br>").openPopup());
     // userMarker.bindPopup("<b>You are here!</b><br>Drag the market to find closest spot</br>").openPopup();
 
     drag(userMarker);
