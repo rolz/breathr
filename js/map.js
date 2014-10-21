@@ -11,7 +11,7 @@ var lng = 18.068580800000063;
 
 var newLatLng = new L.LatLng(lat, lng);
 
-// function onLocationFound(e) {
+function onLocationFound(e) {
     console.log(e.latlng);
     var userIcon = L.icon({
         iconUrl: 'img/user_icon.png',
@@ -33,16 +33,16 @@ var newLatLng = new L.LatLng(lat, lng);
 
     drag(userMarker);
 
-// }
+}
 
 
-// map.on('locationfound', onLocationFound);
+map.on('locationfound', onLocationFound);
 
-// function onLocationError(e) {
-//     alert(e.message);
-// }
+function onLocationError(e) {
+    alert(e.message);
+}
 
-// map.on('locationerror', onLocationError);
+map.on('locationerror', onLocationError);
 
 
 var distancesLeftToCalculate = 0;
