@@ -1,9 +1,9 @@
 var map = L.mapbox.map('map', 'barnaszasz.map-5d7s1o82');
 
-// map.locate({
-//     setView: true,
-//     maxZoom: 13
-// });
+map.locate({
+    setView: true,
+    maxZoom: 13
+});
 
 var userMarker;
 var lat = 59.325;
