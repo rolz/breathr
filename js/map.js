@@ -1,9 +1,9 @@
 var map = L.mapbox.map('map', 'barnaszasz.map-5d7s1o82');
 
-// map.locate({
-//     setView: true,
-//     maxZoom: 13
-// });
+map.locate({
+    setView: true,
+    maxZoom: 13
+});
 
 var userMarker;
 var lat = 59.325;
@@ -11,8 +11,8 @@ var lng = 18.07;
 
 var newLatLng = new L.LatLng(lat, lng);
 
-// function onLocationFound(e) {
-//     console.log(e.latlng);
+function onLocationFound(e) {
+    console.log(e.latlng);
     var userIcon = L.icon({
         iconUrl: 'img/user_icon.png',
         iconSize: [33, 49],
@@ -33,16 +33,16 @@ var newLatLng = new L.LatLng(lat, lng);
 
     drag(userMarker);
 
-// }
+}
 
 
-// map.on('locationFound', onLocationFound);
+map.on('locationfound', onLocationFound);
 
-// function onLocationError(e) {
-//     alert(e.message);
-// }
+function onLocationError(e) {
+    alert(e.message);
+}
 
-// map.on('locationFoundError', onLocationError);
+map.on('locationerror', onLocationError);
 
 
 var distancesLeftToCalculate = 0;
